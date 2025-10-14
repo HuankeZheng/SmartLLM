@@ -1,0 +1,396 @@
+{
+  "独居老人": {
+    "default": [
+      {
+        "activity_name": "洗漱",
+        "start_time": "7:00",
+        "end_time": "7:20"
+      },
+      {
+        "activity_name": "做饭",
+        "start_time": "7:20",
+        "end_time": "7:50"
+      },
+      {
+        "activity_name": "吃饭",
+        "start_time": "7:50",
+        "end_time": "8:20"
+      },
+      {
+        "activity_name": "洗碗",
+        "start_time": "8:20",
+        "end_time": "8:35"
+      },
+      {
+        "activity_name": "看书",
+        "start_time": "8:40",
+        "end_time": "10:10"
+      },
+      {
+        "activity_name": "日间休息",
+        "start_time": "10:10",
+        "end_time": "11:00"
+      },
+      {
+        "activity_name": "做饭",
+        "start_time": "11:00",
+        "end_time": "11:30"
+      },
+      {
+        "activity_name": "吃饭",
+        "start_time": "11:30",
+        "end_time": "12:00"
+      },
+      {
+        "activity_name": "洗碗",
+        "start_time": "12:00",
+        "end_time": "12:15"
+      },
+      {
+        "activity_name": "日间休息",
+        "start_time": "12:15",
+        "end_time": "14:00"
+      },
+      {
+        "activity_name": "看书",
+        "start_time": "14:00",
+        "end_time": "15:30"
+      },
+      {
+        "activity_name": "看电视",
+        "start_time": "15:30",
+        "end_time": "16:30"
+      },
+      {
+        "activity_name": "日间休息",
+        "start_time": "16:30",
+        "end_time": "17:30"
+      },
+      {
+        "activity_name": "做饭",
+        "start_time": "17:30",
+        "end_time": "18:00"
+      },
+      {
+        "activity_name": "吃饭",
+        "start_time": "18:00",
+        "end_time": "18:30"
+      },
+      {
+        "activity_name": "洗碗",
+        "start_time": "18:30",
+        "end_time": "18:45"
+      },
+      {
+        "activity_name": "看书",
+        "start_time": "18:50",
+        "end_time": "20:20"
+      },
+      {
+        "activity_name": "看电视",
+        "start_time": "20:20",
+        "end_time": "21:20"
+      },
+      {
+        "activity_name": "洗漱",
+        "start_time": "21:20",
+        "end_time": "21:40"
+      },
+      {
+        "activity_name": "洗浴",
+        "start_time": "21:40",
+        "end_time": "21:55"
+      },
+      {
+        "activity_name": "睡觉",
+        "start_time": "22:00",
+        "end_time": "7:00"
+      }
+    ]
+  },
+  "放假在家": {
+    "default": [
+      {
+        "activity_name": "洗漱",
+        "start_time": "9:00",
+        "end_time": "9:15"
+      },
+      {
+        "activity_name": "做饭",
+        "start_time": "9:20",
+        "end_time": "10:10"
+      },
+      {
+        "activity_name": "吃饭",
+        "start_time": "10:10",
+        "end_time": "10:45"
+      },
+      {
+        "activity_name": "洗碗",
+        "start_time": "10:45",
+        "end_time": "11:00"
+      },
+      {
+        "activity_name": "看电视",
+        "start_time": "11:05",
+        "end_time": "12:30"
+      },
+      {
+        "activity_name": "做饭",
+        "start_time": "12:35",
+        "end_time": "13:40"
+      },
+      {
+        "activity_name": "吃饭",
+        "start_time": "13:40",
+        "end_time": "14:20"
+      },
+      {
+        "activity_name": "洗碗",
+        "start_time": "14:20",
+        "end_time": "14:35"
+      },
+      {
+        "activity_name": "工作",
+        "start_time": "14:40",
+        "end_time": "16:20"
+      },
+      {
+        "activity_name": "看电视",
+        "start_time": "16:25",
+        "end_time": "18:10"
+      },
+      {
+        "activity_name": "做饭",
+        "start_time": "18:15",
+        "end_time": "19:30"
+      },
+      {
+        "activity_name": "吃饭",
+        "start_time": "19:30",
+        "end_time": "20:10"
+      },
+      {
+        "activity_name": "洗碗",
+        "start_time": "20:10",
+        "end_time": "20:25"
+      },
+      {
+        "activity_name": "看书",
+        "start_time": "20:30",
+        "end_time": "21:20"
+      },
+      {
+        "activity_name": "看电视",
+        "start_time": "21:25",
+        "end_time": "22:40"
+      },
+      {
+        "activity_name": "工作",
+        "start_time": "22:45",
+        "end_time": "23:20"
+      },
+      {
+        "activity_name": "洗浴",
+        "start_time": "23:25",
+        "end_time": "23:50"
+      },
+      {
+        "activity_name": "洗漱",
+        "start_time": "23:50",
+        "end_time": "23:58"
+      },
+      {
+        "activity_name": "睡觉",
+        "start_time": "24:00",
+        "end_time": "9:00"
+      }
+    ]
+  },
+  "居家工作": {
+    "Weekday": [
+      {
+        "activity_name": "洗漱",
+        "start_time": "8:00",
+        "end_time": "8:15"
+      },
+      {
+        "activity_name": "做饭",
+        "start_time": "8:15",
+        "end_time": "8:40"
+      },
+      {
+        "activity_name": "吃饭",
+        "start_time": "8:40",
+        "end_time": "9:00"
+      },
+      {
+        "activity_name": "洗碗",
+        "start_time": "9:00",
+        "end_time": "9:10"
+      },
+      {
+        "activity_name": "工作",
+        "start_time": "9:30",
+        "end_time": "12:00"
+      },
+      {
+        "activity_name": "做饭",
+        "start_time": "12:00",
+        "end_time": "12:25"
+      },
+      {
+        "activity_name": "吃饭",
+        "start_time": "12:25",
+        "end_time": "12:45"
+      },
+      {
+        "activity_name": "洗碗",
+        "start_time": "12:45",
+        "end_time": "12:55"
+      },
+      {
+        "activity_name": "日间休息",
+        "start_time": "13:00",
+        "end_time": "13:30"
+      },
+      {
+        "activity_name": "工作",
+        "start_time": "13:30",
+        "end_time": "16:30"
+      },
+      {
+        "activity_name": "看书",
+        "start_time": "16:45",
+        "end_time": "18:15"
+      },
+      {
+        "activity_name": "做饭",
+        "start_time": "18:15",
+        "end_time": "18:40"
+      },
+      {
+        "activity_name": "吃饭",
+        "start_time": "18:40",
+        "end_time": "19:00"
+      },
+      {
+        "activity_name": "洗碗",
+        "start_time": "19:00",
+        "end_time": "19:10"
+      },
+      {
+        "activity_name": "看电视",
+        "start_time": "19:30",
+        "end_time": "22:00"
+      },
+      {
+        "activity_name": "洗浴",
+        "start_time": "22:00",
+        "end_time": "22:30"
+      },
+      {
+        "activity_name": "洗漱",
+        "start_time": "22:30",
+        "end_time": "22:45"
+      },
+      {
+        "activity_name": "睡觉",
+        "start_time": "23:00",
+        "end_time": "8:00"
+      }
+    ],
+    "Weekend": [
+      {
+        "activity_name": "洗漱",
+        "start_time": "8:00",
+        "end_time": "8:15"
+      },
+      {
+        "activity_name": "做饭",
+        "start_time": "8:15",
+        "end_time": "8:45"
+      },
+      {
+        "activity_name": "吃饭",
+        "start_time": "8:45",
+        "end_time": "9:10"
+      },
+      {
+        "activity_name": "洗碗",
+        "start_time": "9:10",
+        "end_time": "9:20"
+      },
+      {
+        "activity_name": "看书",
+        "start_time": "9:30",
+        "end_time": "11:30"
+      },
+      {
+        "activity_name": "做饭",
+        "start_time": "11:30",
+        "end_time": "12:00"
+      },
+      {
+        "activity_name": "吃饭",
+        "start_time": "12:00",
+        "end_time": "12:25"
+      },
+      {
+        "activity_name": "洗碗",
+        "start_time": "12:25",
+        "end_time": "12:35"
+      },
+      {
+        "activity_name": "日间休息",
+        "start_time": "12:45",
+        "end_time": "13:15"
+      },
+      {
+        "activity_name": "看电视",
+        "start_time": "13:30",
+        "end_time": "15:30"
+      },
+      {
+        "activity_name": "看书",
+        "start_time": "15:40",
+        "end_time": "17:40"
+      },
+      {
+        "activity_name": "做饭",
+        "start_time": "17:40",
+        "end_time": "18:10"
+      },
+      {
+        "activity_name": "吃饭",
+        "start_time": "18:10",
+        "end_time": "18:35"
+      },
+      {
+        "activity_name": "洗碗",
+        "start_time": "18:35",
+        "end_time": "18:45"
+      },
+      {
+        "activity_name": "看电视",
+        "start_time": "18:55",
+        "end_time": "22:00"
+      },
+      {
+        "activity_name": "洗浴",
+        "start_time": "22:00",
+        "end_time": "22:30"
+      },
+      {
+        "activity_name": "洗漱",
+        "start_time": "22:30",
+        "end_time": "22:45"
+      },
+      {
+        "activity_name": "睡觉",
+        "start_time": "23:00",
+        "end_time": "8:00"
+      }
+    ]
+  }
+}

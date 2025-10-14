@@ -1,0 +1,640 @@
+{
+  "activity_config": [
+    {
+      "activity_name": "Sleeping",
+      "event_sequence": {
+        "normal": [
+          {
+            "step": "step1",
+            "target": "Bedroom",
+            "event": "Moving",
+            "status": ""
+          },
+          {
+            "step": "step2",
+            "target": "Bedroom Night Light",
+            "event": "Control",
+            "status": "ON"
+          },
+          {
+            "step": "step3",
+            "target": "Bedroom Bed",
+            "event": "Moving",
+            "status": ""
+          },
+          {
+            "step": "step4",
+            "target": "Bedroom Night Light",
+            "event": "Control",
+            "status": "OFF"
+          },
+          {
+            "step": "step5",
+            "target": "Sleeping",
+            "event": "Executing",
+            "status": "waiting"
+          }
+        ]
+      },
+      "attribute": "schedule"
+    },
+    {
+      "activity_name": "Daytime Rest",
+      "event_sequence": {
+        "normal": [
+          {
+            "step": "step1",
+            "target": "Bedroom",
+            "event": "Moving",
+            "status": ""
+          },
+          {
+            "step": "step2",
+            "target": "Bedroom Bed",
+            "event": "Moving",
+            "status": ""
+          },
+          {
+            "step": "step3",
+            "target": "Rest",
+            "event": "Executing",
+            "status": "waiting"
+          }
+        ]
+      },
+      "attribute": "schedule"
+    },
+    {
+      "activity_name": "Eating",
+      "event_sequence": {
+        "normal": [
+          {
+            "step": "step1",
+            "target": "Kitchen",
+            "event": "Moving",
+            "status": ""
+          },
+          {
+            "step": "step2",
+            "target": "Kitchen",
+            "event": "Moving",
+            "status": ""
+          },
+          {
+            "step": "step3",
+            "target": "Eating",
+            "event": "Executing",
+            "status": "exclusive"
+          }
+        ]
+      },
+      "attribute": "schedule"
+    },
+    {
+      "activity_name": "Wash Dishes",
+      "event_sequence": {
+        "normal": [
+          {
+            "step": "step1",
+            "target": "Kitchen",
+            "event": "Moving",
+            "status": ""
+          },
+          {
+            "step": "step2",
+            "target": "Clear the dishes",
+            "event": "Executing",
+            "status": "exclusive"
+          },
+          {
+            "step": "step3",
+            "target": "Kitchen",
+            "event": "Moving",
+            "status": ""
+          },
+          {
+            "step": "step4",
+            "target": "Dishwasher",
+            "event": "Control",
+            "status": "ON"
+          },
+          {
+            "step": "step5",
+            "target": "Dishwasher Wash Dishes",
+            "event": "Executing",
+            "status": "waiting"
+          },
+          {
+            "step": "step6",
+            "target": "Dishwasher",
+            "event": "Control",
+            "status": "OFF"
+          },
+          {
+            "step": "step7",
+            "target": "Kitchen",
+            "event": "Moving",
+            "status": ""
+          },
+          {
+            "step": "step8",
+            "target": "Clear the dishes",
+            "event": "Executing",
+            "status": "exclusive"
+          }
+        ]
+      },
+      "attribute": "schedule"
+    },
+    {
+      "activity_name": "Cooking",
+      "event_sequence": {
+        "Cook": [
+          {
+            "step": "step1",
+            "target": "Kitchen",
+            "event": "Moving",
+            "status": ""
+          },
+          {
+            "step": "step2",
+            "target": "Fridge",
+            "event": "Control",
+            "status": "ON"
+          },
+          {
+            "step": "step3",
+            "target": "Fridge",
+            "event": "Control",
+            "status": "OFF"
+          },
+          {
+            "step": "step4",
+            "target": "Prepare ingredients",
+            "event": "Executing",
+            "status": "exclusive"
+          },
+          {
+            "step": "step5",
+            "target": "Stove",
+            "event": "Control",
+            "status": "ON"
+          },
+          {
+            "step": "step6",
+            "target": "Stove",
+            "event": "Executing",
+            "status": "exclusive"
+          },
+          {
+            "step": "step7",
+            "target": "Stove",
+            "event": "Control",
+            "status": "OFF"
+          }
+        ],
+        "stew": [
+          {
+            "step": "step1",
+            "target": "Kitchen",
+            "event": "Moving",
+            "status": ""
+          },
+          {
+            "step": "step2",
+            "target": "Fridge",
+            "event": "Control",
+            "status": "ON"
+          },
+          {
+            "step": "step3",
+            "target": "Fridge",
+            "event": "Control",
+            "status": "OFF"
+          },
+          {
+            "step": "step4",
+            "target": "Prepare ingredients",
+            "event": "Executing",
+            "status": "exclusive"
+          },
+          {
+            "step": "step5",
+            "target": "Stove",
+            "event": "Control",
+            "status": "ON"
+          },
+          {
+            "step": "step6",
+            "target": "Stove",
+            "event": "Executing",
+            "status": "waiting"
+          },
+          {
+            "step": "step7",
+            "target": "Stove",
+            "event": "Control",
+            "status": "OFF"
+          }
+        ],
+        "heat": [
+          {
+            "step": "step1",
+            "target": "Kitchen",
+            "event": "Moving",
+            "status": ""
+          },
+          {
+            "step": "step2",
+            "target": "Fridge",
+            "event": "Control",
+            "status": "ON"
+          },
+          {
+            "step": "step3",
+            "target": "Fridge",
+            "event": "Control",
+            "status": "OFF"
+          },
+          {
+            "step": "step5",
+            "target": "Microwave",
+            "event": "Control",
+            "status": "ON"
+          },
+          {
+            "step": "step6",
+            "target": "Microwave",
+            "event": "Executing",
+            "status": "exclusive"
+          },
+          {
+            "step": "step7",
+            "target": "Microwave",
+            "event": "Control",
+            "status": "OFF"
+          }
+        ]
+      },
+      "attribute": "schedule"
+    },
+    {
+      "activity_name": "Work",
+      "event_sequence": {
+        "normal": [
+          {
+            "step": "step1",
+            "target": "Study Room",
+            "event": "Moving",
+            "status": ""
+          },
+          {
+            "step": "step2",
+            "target": "Study Room Light",
+            "event": "Control",
+            "status": "ON"
+          },
+          {
+            "step": "step3",
+            "target": "Study Room Chair",
+            "event": "Moving",
+            "status": ""
+          },
+          {
+            "step": "step4",
+            "target": "Computer",
+            "event": "Control",
+            "status": "ON"
+          },
+          {
+            "step": "step5",
+            "target": "Work",
+            "event": "Executing",
+            "status": "waiting"
+          },
+          {
+            "step": "step6",
+            "target": "Computer",
+            "event": "Control",
+            "status": "OFF"
+          },
+          {
+            "step": "step7",
+            "target": "Study Room Light",
+            "event": "Control",
+            "status": "OFF"
+          }
+        ]
+      },
+      "attribute": "schedule"
+    },
+    {
+      "activity_name": "Watch TV",
+      "event_sequence": {
+        "normal": [
+          {
+            "step": "step1",
+            "target": "Living Room",
+            "event": "Moving",
+            "status": ""
+          },
+          {
+            "step": "step2",
+            "target": "Living Room Light",
+            "event": "Control",
+            "status": "ON"
+          },
+          {
+            "step": "step3",
+            "target": "Sofa",
+            "event": "Moving",
+            "status": ""
+          },
+          {
+            "step": "step4",
+            "target": "TV",
+            "event": "Control",
+            "status": "ON"
+          },
+          {
+            "step": "step5",
+            "target": "Watch TV",
+            "event": "Executing",
+            "status": "waiting"
+          },
+          {
+            "step": "step6",
+            "target": "TV",
+            "event": "Control",
+            "status": "OFF"
+          },
+          {
+            "step": "step7",
+            "target": "Living Room Light",
+            "event": "Control",
+            "status": "OFF"
+          }
+        ]
+      },
+      "attribute": "schedule"
+    },
+    {
+      "activity_name": "Read Book",
+      "event_sequence": {
+        "normal": [
+          {
+            "step": "step1",
+            "target": "Study Room",
+            "event": "Moving",
+            "status": ""
+          },
+          {
+            "step": "step2",
+            "target": "Study Room Light",
+            "event": "Control",
+            "status": "ON"
+          },
+          {
+            "step": "step3",
+            "target": "Study Room Chair",
+            "event": "Moving",
+            "status": ""
+          },
+          {
+            "step": "step4",
+            "target": "Read Book",
+            "event": "Executing",
+            "status": "waiting"
+          },
+          {
+            "step": "step5",
+            "target": "Study Room Light",
+            "event": "Control",
+            "status": "OFF"
+          }
+        ]
+      },
+      "attribute": "schedule"
+    },
+    {
+      "activity_name": "Wash up",
+      "event_sequence": {
+        "normal": [
+          {
+            "step": "step1",
+            "target": "Toilet",
+            "event": "Moving",
+            "status": ""
+          },
+          {
+            "step": "step2",
+            "target": "Toilet Light",
+            "event": "Control",
+            "status": "ON"
+          },
+          {
+            "step": "step3",
+            "target": "Faucet",
+            "event": "Control",
+            "status": "ON"
+          },
+          {
+            "step": "step4",
+            "target": "Wash up",
+            "event": "Executing",
+            "status": "exclusive"
+          },
+          {
+            "step": "step5",
+            "target": "Faucet",
+            "event": "Control",
+            "status": "OFF"
+          },
+          {
+            "step": "step6",
+            "target": "Toilet Light",
+            "event": "Control",
+            "status": "OFF"
+          }
+        ]
+      },
+      "attribute": "schedule"
+    },
+    {
+      "activity_name": "Bathing",
+      "event_sequence": {
+        "normal": [
+          {
+            "step": "step1",
+            "target": "Toilet",
+            "event": "Moving",
+            "status": ""
+          },
+          {
+            "step": "step2",
+            "target": "Toilet Light",
+            "event": "Control",
+            "status": "ON"
+          },
+          {
+            "step": "step3",
+            "target": "Shower Head",
+            "event": "Control",
+            "status": "ON"
+          },
+          {
+            "step": "step4",
+            "target": "Bathing",
+            "event": "Executing",
+            "status": "exclusive"
+          },
+          {
+            "step": "step5",
+            "target": "Shower Head",
+            "event": "Control",
+            "status": "OFF"
+          },
+          {
+            "step": "step6",
+            "target": "Toilet Light",
+            "event": "Control",
+            "status": "OFF"
+          }
+        ]
+      },
+      "attribute": "schedule"
+    },
+    {
+      "activity_name": "Toilet",
+      "event_sequence": {
+        "normal": [
+          {
+            "step": "step1",
+            "target": "Toilet",
+            "event": "Moving",
+            "status": ""
+          },
+          {
+            "step": "step2",
+            "target": "Toilet Light",
+            "event": "Control",
+            "status": "ON"
+          },
+          {
+            "step": "step3",
+            "target": "Toilet Bowl",
+            "event": "Control",
+            "status": "ON"
+          },
+          {
+            "step": "step4",
+            "target": "Toilet",
+            "event": "Executing",
+            "status": "exclusive"
+          },
+          {
+            "step": "step5",
+            "target": "Toilet Bowl",
+            "event": "Control",
+            "status": "OFF"
+          },
+          {
+            "step": "step6",
+            "target": "Faucet",
+            "event": "Control",
+            "status": "ON"
+          },
+          {
+            "step": "step7",
+            "target": "Faucet",
+            "event": "Control",
+            "status": "OFF"
+          },
+          {
+            "step": "step8",
+            "target": "Toilet Light",
+            "event": "Control",
+            "status": "OFF"
+          }
+        ]
+      },
+      "attribute": "random"
+    },
+    {
+      "activity_name": "Step Out",
+      "event_sequence": {
+        "normal": [
+          {
+            "step": "step1",
+            "target": "Main Gate",
+            "event": "Moving",
+            "status": ""
+          },
+          {
+            "step": "step2",
+            "target": "Main Gate",
+            "event": "Control",
+            "status": "ON"
+          },
+          {
+            "step": "step3",
+            "target": "Main Gate",
+            "event": "Control",
+            "status": "OFF"
+          },
+          {
+            "step": "step4",
+            "target": "Step Out",
+            "event": "Executing",
+            "status": "exclusive"
+          },
+          {
+            "step": "step5",
+            "target": "Main Gate",
+            "event": "Control",
+            "status": "ON"
+          },
+          {
+            "step": "step6",
+            "target": "Main Gate",
+            "event": "Control",
+            "status": "OFF"
+          },
+          {
+            "step": "step7",
+            "target": "Main Gate",
+            "event": "Moving",
+            "status": ""
+          }
+        ]
+      },
+      "attribute": "schedule"
+    },
+    {
+      "activity_name": "Phone",
+      "event_sequence": {
+        "normal": [
+          {
+            "step": "step1",
+            "target": "Phone",
+            "event": "Control",
+            "status": "ON"
+          },
+          {
+            "step": "step2",
+            "target": "Phone",
+            "event": "Executing",
+            "status": "exclusive"
+          },
+          {
+            "step": "step3",
+            "target": "Phone",
+            "event": "Control",
+            "status": "OFF"
+          }
+        ]
+      },
+      "attribute": "random"
+    }
+  ]
+}
