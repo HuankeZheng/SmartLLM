@@ -1,11 +1,14 @@
 import json
 import numpy as np
 import matplotlib
+
 matplotlib.use('TkAgg')  # 或其他可用后端如'Qt5Agg'
 import matplotlib.pyplot as plt
 from matplotlib.table import Table
+import os
 
 plt.rcParams["font.family"] = ["SimHei"]  # 设置中文字体
+
 
 def map_initialization(data):
     xmin = data['环境配置']['整体布局']['xmin']
@@ -97,3 +100,45 @@ def create_color_table(matrix):
 
     plt.title("矩阵颜色表格")
     plt.show()
+
+
+def load_prompt_dict(folder_path):
+    prompt_dict = {}
+    for filename in os.listdir(folder_path):
+        file_path = os.path.join(folder_path, filename)
+        if os.path.isfile(file_path):
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+                prompt_dict[filename] = content
+    return prompt_dict
+
+
+def get_weekday(current_day):
+    current_day = current_day % 7
+    if current_day == 0:
+        return "星期一"
+    elif current_day == 1:
+        return "星期二"
+    elif current_day == 2:
+        return "星期三"
+    elif current_day == 3:
+        return "星期四"
+    elif current_day == 4:
+        return "星期五"
+    elif current_day == 5:
+        return "星期六"
+    else:
+        return "星期日"
+
+
+def get_activity_str(data):
+    activity_str = ''
+    for activity in data['活动配置']:
+        activity_name = activity['活动名称']
+        activity_str = activity_name + ', ' + activity_str
+    print(activity_str)
+
+
+def calculate_path(destination_from, destination_to, map_matrix):
+    path = []
+    return path
