@@ -112,7 +112,7 @@
       <workItem from="1759894229903" duration="3189000" />
       <workItem from="1760315191049" duration="22176000" />
       <workItem from="1760403661453" duration="9333000" />
-      <workItem from="1761356739815" duration="730000" />
+      <workItem from="1761356739815" duration="1399000" />
     </task>
     <servers />
   </component>
@@ -125,6 +125,7 @@
     </ignored-roots>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/SmartLLM$main.coverage" NAME="main 覆盖结果" MODIFIED="1761357165279" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/SmartLLM$main.coverage" NAME="main 覆盖结果" MODIFIED="1761357802911" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/SmartLLM$agent.coverage" NAME="agent 覆盖结果" MODIFIED="1761357279298" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/module" />
   </component>
 </project>

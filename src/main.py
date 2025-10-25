@@ -9,7 +9,7 @@ env_config_dir = "config/env_config.json"
 with open(env_config_dir, 'r', encoding='utf-8') as file:
     env_config = json.load(file)
 map_matrix = utils.map_initialization(env_config)
-utils.create_color_table(map_matrix)
+# utils.create_color_table(map_matrix)
 
 # load user profile
 user_profile_dir = r"config/user_profile.json"
@@ -32,12 +32,12 @@ activity_str = utils.get_activity_str(activity_config)
 
 iteration_day_num = 30
 
-# # user initialization
-# user = agent.SmartAgent(user_profile_choose, activity_str, prompt_dict)
-#
-# # create event
-# event_system = event.Event(agent=user, activity_config=activity_config, env_config=env_config, map_matrix=map_matrix)
-#
-# # 运行整个工作流程
-# total_days = 30
-# event_system.run_workflow(total_days=total_days)
+# user initialization
+user = agent.SmartAgent(user_profile_choose, activity_str, prompt_dict)
+
+# create event
+event_system = event.Event(agent=user, activity_config=activity_config, env_config=env_config, map_matrix=map_matrix)
+
+# 运行整个工作流程
+total_days = 30
+event_system.run_workflow(total_days=total_days)
