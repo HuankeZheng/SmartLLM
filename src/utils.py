@@ -7,7 +7,8 @@ import matplotlib.pyplot as plt
 from matplotlib.table import Table
 import os
 
-plt.rcParams["font.family"] = ["SimHei"]  # 设置中文字体
+# plt.rcParams["font.family"] = ["SimHei"]  # window设置中文字体
+plt.rcParams["font.family"] = ["Heiti TC", "STHeiti"]  # mac设置中文字体
 
 
 def map_initialization(data):
@@ -139,6 +140,111 @@ def get_activity_str(data):
     print(activity_str)
 
 
+from collections import deque
+
+
 def calculate_path(destination_from, destination_to, map_matrix):
-    path = []
-    return path
+    # 如果起点或终点不可达，直接返回空路径
+    if (not is_valid_position(destination_from, map_matrix) or
+            not is_valid_position(destination_to, map_matrix)):
+        return []
+
+    # 如果起点和终点相同
+    if destination_from == destination_to:
+        return [destination_from]
+
+    # BFS寻找最短路径
+    rows = len(map_matrix)
+    cols = len(map_matrix[0]) if rows > 0 else 0
+
+    # 方向：上、右、下、左
+    directions = [(-1, 0), (0, 1), (1, 0), (0, -1)]
+
+    # 记录访问状态和路径
+    visited = [[False] * cols for _ in range(rows)]
+    parent = [[None] * cols for _ in range(rows)]
+
+    # BFS队列
+    queue = deque()
+    start_x, start_y = destination_from
+    queue.append((start_x, start_y))
+    visited[start_x][start_y] = True
+
+    found = False
+    end_x, end_y = destination_to
+
+    while queue:
+        x, y = queue.popleft()
+
+        # 如果到达终点
+        if x == end_x and y == end_y:
+            found = True
+            break
+
+        # 遍历四个方向
+        for dx, dy in directions:
+            nx, ny = x + dx, y + dy
+
+            # 检查新位置是否有效且未被访问
+            if (0 <= nx < rows and 0 <= ny < cols and
+                    not visited[nx][ny] and is_valid_position([nx, ny], map_matrix)):
+                visited[nx][ny] = True
+                parent[nx][ny] = (x, y)
+                queue.append((nx, ny))
+
+    # 如果找到路径，回溯构建路径
+    if found:
+        path = []
+        current = (end_x, end_y)
+
+        # 回溯到起点
+        while current != (start_x, start_y):
+            path.append([current[0], current[1]])
+            current = parent[current[0]][current[1]]
+
+        path.append([start_x, start_y])
+        path.reverse()  # 反转路径，从起点到终点
+
+        return path
+
+    return []  # 没有找到路径
+
+
+def is_valid_position(position, map_matrix):
+    """检查位置是否有效且可达"""
+    x, y = position
+    rows = len(map_matrix)
+    cols = len(map_matrix[0]) if rows > 0 else 0
+
+    # 检查边界
+    if x < 0 or x >= rows or y < 0 or y >= cols:
+        return False
+
+    # 检查是否可达（值不为-1且不为4）
+    value = map_matrix[x][y]
+    return value != -1 and value != 4
+
+
+# 测试示例
+if __name__ == "__main__":
+    # 测试地图
+    test_map = [
+        [0, 0, 0, 0],
+        [0, -1, 4, 0],
+        [0, 0, 0, 0],
+        [0, 4, -1, 0]
+    ]
+
+    # 测试用例
+    start = [0, 0]
+    end = [3, 3]
+
+    path = calculate_path(start, end, test_map)
+    print("路径:", path)
+
+    # 另一个测试用例
+    start2 = [0, 0]
+    end2 = [1, 2]  # 这个位置不可达
+
+    path2 = calculate_path(start2, end2, test_map)
+    print("到不可达位置的路径:", path2)

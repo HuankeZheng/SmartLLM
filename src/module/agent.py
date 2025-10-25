@@ -1,4 +1,4 @@
-from .. import chat
+from src import chat
 
 
 class SmartAgent:
@@ -8,7 +8,6 @@ class SmartAgent:
         self.current_schedule = None
         self.past_schedule = None
         self.past_activities = []
-        self.LLM = chat.DeepSeekLLM()
         self.user_profile = user_config['简介']
         self.user_lifestyle = ''
         self.prompt_dict = prompt_dict
@@ -33,7 +32,7 @@ class SmartAgent:
         prompt = prompt_format.format(**variables)
 
         # 实际应用中这里会调用LLM生成安排
-        self.current_schedule = self.LLM.generate(prompt=prompt)
+        self.current_schedule = chat.get_response(content=prompt)
         return self.current_schedule
 
     def generate_follow_up_schedule(self):
@@ -51,7 +50,7 @@ class SmartAgent:
         prompt = prompt_format.format(**variables)
         # 2.输入prompt，得到输出结果，并返回
         # 实际应用中这里会调用LLM生成安排
-        self.current_schedule = self.LLM.generate(prompt=prompt)
+        self.current_schedule = chat.get_response(content=prompt)
         return self.current_schedule
 
     def judge_waiting_event(self, current_activity, current_waiting_event):
@@ -72,7 +71,7 @@ class SmartAgent:
         prompt = prompt_format.format(**variables)
         # 2.输入prompt，得到输出结果，并返回
         # 实际应用中这里会调用LLM生成安排
-        choose_activity = self.LLM.generate(prompt=prompt)
+        choose_activity = chat.get_response(content=prompt)
         return f"在等待过程中进行活动: {choose_activity}"
 
     def judge_phone_event(self):
@@ -90,7 +89,7 @@ class SmartAgent:
         prompt = prompt_format.format(**variables)
         # 2.输入prompt，得到输出结果，并返回
         # 实际应用中这里会调用LLM生成安排
-        phone_decision = self.LLM.generate(prompt=prompt)
+        phone_decision = chat.get_response(content=prompt)
         if "否" in phone_decision:
             print("不进行计划修改")
             return None

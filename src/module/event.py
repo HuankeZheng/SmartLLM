@@ -1,7 +1,7 @@
 import json
 import random
 from collections import deque
-from .. import utils
+from src import utils
 
 
 class Event:
