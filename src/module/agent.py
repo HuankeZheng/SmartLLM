@@ -38,24 +38,24 @@ class SmartAgent:
         schedule = json.loads(schedule)
         return schedule
 
-    def generate_follow_up_schedule(self):
-        # 更新日计划
-        # 1.读取内容，合成prompt
-        prompt_format = self.prompt_dict["update_day_plan"]
-        variables = {
-            "user_profile": self.user_profile,
-            "lifestyle": self.user_lifestyle,
-            "schedule": self.current_schedule,
-            "past_schedule": self.past_schedule,
-            "weekday": self.weekday,
-            "activity_list": self.activity_list
-        }
-        prompt = prompt_format.format(**variables)
-        # 2.输入prompt，得到输出结果，并返回
-        # 实际应用中这里会调用LLM生成安排
-        schedule = chat.get_response(content=prompt)
-        schedule = json.loads(schedule)
-        return schedule
+    # def generate_follow_up_schedule(self):
+    #     # 更新日计划
+    #     # 1.读取内容，合成prompt
+    #     prompt_format = self.prompt_dict["update_day_plan"]
+    #     variables = {
+    #         "user_profile": self.user_profile,
+    #         "lifestyle": self.user_lifestyle,
+    #         "schedule": self.current_schedule,
+    #         "past_schedule": self.past_schedule,
+    #         "weekday": self.weekday,
+    #         "activity_list": self.activity_list
+    #     }
+    #     prompt = prompt_format.format(**variables)
+    #     # 2.输入prompt，得到输出结果，并返回
+    #     # 实际应用中这里会调用LLM生成安排
+    #     schedule = chat.get_response(content=prompt)
+    #     schedule = json.loads(schedule)
+    #     return schedule
 
     def judge_waiting_event(self, current_activity, current_waiting_event):
         """判断waiting事件处理方式"""
@@ -76,7 +76,8 @@ class SmartAgent:
         # 2.输入prompt，得到输出结果，并返回
         # 实际应用中这里会调用LLM生成安排
         choose_activity = chat.get_response(content=prompt)
-        return f"在等待过程中进行活动: {choose_activity}"
+        print(f"在等待过程中进行活动: {choose_activity}")
+        return choose_activity
 
     def judge_phone_event(self):
         """判断phone事件处理方式"""

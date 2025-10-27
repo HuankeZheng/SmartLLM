@@ -27,6 +27,12 @@ class Event:
         self.current_event = ''
         self.destination_now = ''
         self.activity_now = ''
+        self.todo_schedule = deque([])
+        self.phone_happened = 0
+
+    def reset_state(self, current_day):
+        self.agent.weekday = utils.get_weekday(current_day)
+        self.phone_happened = 0
 
     # 工作流模块
     def run_workflow(self, total_days):
@@ -34,10 +40,11 @@ class Event:
         current_day = 1
         while current_day <= total_days:
             print(f"----- 第 {current_day} 天 -----")
-            # 1.生成今日安排
-            self.agent.weekday = utils.get_weekday(current_day)
-            self.todo_schedule = self.agent.generate_daily_schedule()
-            # 2.逐个执行活动，将每个活动转化为可执行事件序列，再执行
+            # 1.刷新今日的状态
+            self.reset_state(current_day)
+            # 2.生成今日安排
+            self.todo_schedule = deque(self.agent.generate_daily_schedule())
+            # 3.逐个执行活动，将每个活动转化为可执行事件序列，再执行
             self.execute_schedule()
             current_day += 1
         print("所有日期执行结束")
@@ -70,14 +77,13 @@ class Event:
 
             # 3.将最新活动转化为可执行事件序列，并执行
             event_list = self.activity2event_list(activity_name, duration)
-            self.event_sequence = self.event_sequence + event_list
             self.handle_event_list(event_list)
 
             # 4.事件序列结束后触发可能的随机活动
             self.trigger_random_activity()
 
-            # 5.当前活动结束后，判断是否更新日程安排
-            self.agent.generate_follow_up_schedule()
+            # # 5.当前活动结束后，判断是否更新日程安排
+            # self.agent.generate_follow_up_schedule()
 
     def activity2event_list(self, activity, duration=30):
         """将活动转化为对应的可执行事件序列，并返回"""
