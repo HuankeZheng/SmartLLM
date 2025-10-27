@@ -85,7 +85,7 @@ class Event:
             # # 5.当前活动结束后，判断是否更新日程安排
             # self.agent.generate_follow_up_schedule()
 
-    def activity2event_list(self, activity, duration=30):
+    def activity2event_list(self, activity, duration=1):
         """将活动转化为对应的可执行事件序列，并返回"""
         event_list = []
         # 定义事件属性与持续时间的映射关系，便于后续维护

@@ -32,7 +32,8 @@
             "step": "step5",
             "目标": "休息",
             "属性": "执行",
-            "状态": "waiting"
+            "状态": "waiting",
+            "生成": "plan"
           }
         ]
       },
@@ -58,7 +59,8 @@
             "step": "step3",
             "目标": "休息",
             "属性": "执行",
-            "状态": "waiting"
+            "状态": "waiting",
+            "生成": "random"
           }
         ]
       },
@@ -90,7 +92,8 @@
             "step": "step4",
             "目标": "吃饭",
             "属性": "执行",
-            "状态": "exclusive"
+            "状态": "exclusive",
+            "生成": "plan"
           }
         ]
       },
@@ -116,7 +119,8 @@
             "step": "step3",
             "目标": "收拾碗筷",
             "属性": "执行",
-            "状态": "exclusive"
+            "状态": "exclusive",
+            "生成": "random"
           },
           {
             "step": "step4",
@@ -140,7 +144,8 @@
             "step": "step7",
             "目标": "洗碗机",
             "属性": "执行",
-            "状态": "waiting"
+            "状态": "waiting",
+            "生成": "plan"
           },
           {
             "step": "step8",
@@ -164,7 +169,8 @@
             "step": "step11",
             "目标": "收拾碗筷",
             "属性": "执行",
-            "状态": "exclusive"
+            "状态": "exclusive",
+            "生成": "random"
           }
         ]
       },
@@ -202,7 +208,8 @@
             "step": "step5",
             "目标": "处理食材",
             "属性": "执行",
-            "状态": "exclusive"
+            "状态": "exclusive",
+            "生成": "random"
           },
           {
             "step": "step6",
@@ -220,7 +227,8 @@
             "step": "step8",
             "目标": "炉灶",
             "属性": "执行",
-            "状态": "exclusive"
+            "状态": "exclusive",
+            "生成": "random"
           },
           {
             "step": "step9",
@@ -258,7 +266,8 @@
             "step": "step5",
             "目标": "处理食材",
             "属性": "执行",
-            "状态": "exclusive"
+            "状态": "exclusive",
+            "生成": "random"
           },
           {
             "step": "step6",
@@ -276,7 +285,8 @@
             "step": "step8",
             "目标": "炉灶",
             "属性": "执行",
-            "状态": "waiting"
+            "状态": "waiting",
+            "生成": "plan"
           },
           {
             "step": "step9",
@@ -326,7 +336,8 @@
             "step": "step7",
             "目标": "微波炉",
             "属性": "执行",
-            "状态": "exclusive"
+            "状态": "exclusive",
+            "生成": "plan"
           },
           {
             "step": "step8",
@@ -370,7 +381,8 @@
             "step": "step5",
             "目标": "工作",
             "属性": "执行",
-            "状态": "waiting"
+            "状态": "waiting",
+            "生成": "plan"
           },
           {
             "step": "step6",
@@ -420,7 +432,8 @@
             "step": "step5",
             "目标": "看电视",
             "属性": "执行",
-            "状态": "waiting"
+            "状态": "waiting",
+            "生成": "plan"
           },
           {
             "step": "step6",
@@ -464,7 +477,8 @@
             "step": "step4",
             "目标": "看书",
             "属性": "执行",
-            "状态": "waiting"
+            "状态": "waiting",
+            "生成": "plan"
           },
           {
             "step": "step5",
@@ -508,7 +522,8 @@
             "step": "step5",
             "目标": "洗漱",
             "属性": "执行",
-            "状态": "exclusive"
+            "状态": "exclusive",
+            "生成": "random"
           },
           {
             "step": "step6",
@@ -558,7 +573,8 @@
             "step": "step5",
             "目标": "洗浴",
             "属性": "执行",
-            "状态": "exclusive"
+            "状态": "exclusive",
+            "生成": "random"
           },
           {
             "step": "step6",
@@ -608,7 +624,8 @@
             "step": "step5",
             "目标": "厕所",
             "属性": "执行",
-            "状态": "exclusive"
+            "状态": "exclusive",
+            "生成": "random"
           },
           {
             "step": "step6",
@@ -676,7 +693,8 @@
             "step": "step5",
             "目标": "外出",
             "属性": "执行",
-            "状态": "exclusive"
+            "状态": "exclusive",
+            "生成": "plan"
           },
           {
             "step": "step6",
@@ -708,7 +726,8 @@
             "step": "step2",
             "目标": "电话",
             "属性": "执行",
-            "状态": "exclusive"
+            "状态": "exclusive",
+            "生成": "random"
           },
           {
             "step": "step3",
