@@ -62,7 +62,7 @@ class Event:
             activity_name = activity_todo.get("activity_name")
             start_time = activity_todo.get("start_time")
             end_time = activity_todo.get("end_time")
-            duration = end_time - start_time
+            duration = utils.str_time2int_time(end_time) - utils.str_time2int_time(start_time)
 
             # 2.判断最新活动是否有效
             activity_list = self.activity_config.get("活动配置", [])
@@ -82,8 +82,10 @@ class Event:
             # 4.事件序列结束后触发可能的随机活动
             self.trigger_random_activity()
 
-            # # 5.当前活动结束后，判断是否更新日程安排
-            # self.agent.generate_follow_up_schedule()
+            # # 5.当前活动结束后，根据计划时间和当前时间，判断是否更新日程安排
+            time_diff = utils.str_time2int_time(end_time) - self.agent.time
+            if time_diff > 60:
+                self.agent.generate_follow_up_schedule()
 
     def activity2event_list(self, activity, duration=1):
         """将活动转化为对应的可执行事件序列，并返回"""
@@ -98,9 +100,14 @@ class Event:
         event_input_list = activity["事件序列"]["正常"]
         for event_input in event_input_list:
             event_attribute = event_input.get("属性")
+            duration_attribute = event_input.get("生成")
             # 仅处理已知属性的事件，未知属性不修改duration
             if event_attribute in duration_mapping:
-                event_input["duration"] = duration_mapping[event_attribute]
+                if duration_attribute == "random":
+                    # 使用1-3分钟的随机整数
+                    event_input["duration"] = random.randint(1, 3)
+                else:
+                    event_input["duration"] = duration_mapping[event_attribute]
             event_list.append(event_input)
         return event_list
 
