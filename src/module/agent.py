@@ -1,3 +1,5 @@
+import json
+
 from src import chat
 
 
@@ -32,8 +34,9 @@ class SmartAgent:
         prompt = prompt_format.format(**variables)
 
         # 实际应用中这里会调用LLM生成安排
-        self.current_schedule = chat.get_response(content=prompt)
-        return self.current_schedule
+        schedule = chat.get_response(content=prompt)
+        schedule = json.loads(schedule)
+        return schedule
 
     def generate_follow_up_schedule(self):
         # 更新日计划
@@ -50,8 +53,9 @@ class SmartAgent:
         prompt = prompt_format.format(**variables)
         # 2.输入prompt，得到输出结果，并返回
         # 实际应用中这里会调用LLM生成安排
-        self.current_schedule = chat.get_response(content=prompt)
-        return self.current_schedule
+        schedule = chat.get_response(content=prompt)
+        schedule = json.loads(schedule)
+        return schedule
 
     def judge_waiting_event(self, current_activity, current_waiting_event):
         """判断waiting事件处理方式"""
@@ -96,4 +100,5 @@ class SmartAgent:
         else:
             print(f"原计划: {self.past_schedule}")
             print(f"修改后计划为: {phone_decision}")
+            phone_decision = json.loads(phone_decision)
             return phone_decision

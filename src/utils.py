@@ -7,8 +7,10 @@ import matplotlib.pyplot as plt
 from matplotlib.table import Table
 import os
 
-# plt.rcParams["font.family"] = ["SimHei"]  # window设置中文字体
-plt.rcParams["font.family"] = ["Heiti TC", "STHeiti"]  # mac设置中文字体
+plt.rcParams["font.family"] = ["SimHei"]  # window设置中文字体
+
+
+# plt.rcParams["font.family"] = ["Heiti TC", "STHeiti"]  # mac设置中文字体
 
 
 def map_initialization(data):
@@ -223,6 +225,23 @@ def is_valid_position(position, map_matrix):
     # 检查是否可达（值不为-1且不为4）
     value = map_matrix[x][y]
     return value != -1 and value != 4
+
+
+def str_time2int_time(str_time):
+    """将"时:分"格式的字符串转换为分钟数"""
+    # 只分割一次字符串，避免重复操作
+    hour_str, minute_str = str_time.split(":")
+    return int(hour_str) * 60 + int(minute_str)
+
+
+def int_time2str_time(int_time):
+    """将分钟数转换为"时:分"格式的字符串（自动处理超过24小时的情况）"""
+    # 取模处理超过24小时的情况，使用整除和取余更简洁
+    total_minutes = int_time % (24 * 60)
+    hour = total_minutes // 60
+    minute = total_minutes % 60
+    # 确保分钟数始终为两位数（如 9:5 → 09:05）
+    return f"{hour:02d}:{minute:02d}"
 
 
 # 测试示例

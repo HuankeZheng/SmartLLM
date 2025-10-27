@@ -23,19 +23,10 @@ class Event:
         self.map_matrix = map_matrix
         self.params = {'toilet_prob': agent.toilet_prob, 'phone_prob': agent.phone_prob}
         self.record = []
-        self.done_schedule = deque([])
-        self.todo_schedule = deque([])
-        self.event_sequence = deque([])
         self.current_activity = ''
         self.current_event = ''
         self.destination_now = ''
         self.activity_now = ''
-
-    def update_schedule(self, schedule):
-        """
-        将日程安排字符串，转换成待执行活动序列
-        """
-        self.todo_schedule = json.loads(schedule)
 
     # 工作流模块
     def run_workflow(self, total_days):
@@ -45,10 +36,8 @@ class Event:
             print(f"----- 第 {current_day} 天 -----")
             # 1.生成今日安排
             self.agent.weekday = utils.get_weekday(current_day)
-            schedule = self.agent.generate_daily_schedule()
-            # 2.将今日安排转化为可执行活动序列
-            self.update_schedule(schedule=schedule)
-            # 3.逐个执行活动，将每个活动转化为可执行事件序列，再执行
+            self.todo_schedule = self.agent.generate_daily_schedule()
+            # 2.逐个执行活动，将每个活动转化为可执行事件序列，再执行
             self.execute_schedule()
             current_day += 1
         print("所有日期执行结束")
@@ -64,7 +53,9 @@ class Event:
             # 1.后续安排不为空，则获得最新活动
             activity_todo = self.todo_schedule.popleft()
             activity_name = activity_todo.get("activity_name")
-            activity_time = activity_todo.get("activity_time")
+            start_time = activity_todo.get("start_time")
+            end_time = activity_todo.get("end_time")
+            duration = end_time - start_time
 
             # 2.判断最新活动是否有效
             activity_list = self.activity_config.get("活动配置", [])
@@ -78,7 +69,7 @@ class Event:
                 raise Exception(f"未找到活动 {activity_name}")
 
             # 3.将最新活动转化为可执行事件序列，并执行
-            event_list = self.activity2event_list(activity_name, activity_time)
+            event_list = self.activity2event_list(activity_name, duration)
             self.event_sequence = self.event_sequence + event_list
             self.handle_event_list(event_list)
 
@@ -90,11 +81,26 @@ class Event:
 
     def activity2event_list(self, activity, duration=30):
         """将活动转化为对应的可执行事件序列，并返回"""
-        event_list = activity["事件序列"]["正常"]
+        event_list = []
+        # 定义事件属性与持续时间的映射关系，便于后续维护
+        duration_mapping = {
+            "移动": 1,
+            "控制": 0,
+            "执行": duration
+        }
+
+        event_input_list = activity["事件序列"]["正常"]
+        for event_input in event_input_list:
+            event_attribute = event_input.get("属性")
+            # 仅处理已知属性的事件，未知属性不修改duration
+            if event_attribute in duration_mapping:
+                event_input["duration"] = duration_mapping[event_attribute]
+            event_list.append(event_input)
         return event_list
 
     def handle_event_list(self, event_list):
         """执行可执行事件序列"""
+        event_list = deque(event_list)
         while event_list:
             event_todo = event_list.popleft()
             event_state = event_todo.get("属性")
@@ -125,7 +131,7 @@ class Event:
                     print(f"触发{sensor_name}")
                     record_i = {
                         "星期": self.agent.weekday,
-                        "小时": self.agent.hour,
+                        "时间": utils.int_time2str_time(self.agent.time),
                         "sensor_type": sensor_name,
                         "sensor_state": 'ON',
                         "device_type": '',
@@ -134,6 +140,7 @@ class Event:
                     }
                     self.record.append(record_i)
         self.destination_now = destination_to
+        self.agent.time += event_todo["duration"]
         print(f"移动事件: {event_todo}")
 
     def execute_control(self, event_todo):
@@ -144,7 +151,7 @@ class Event:
         device_state = event_todo["状态"]
         record_i = {
             "星期": self.agent.weekday,
-            "小时": self.agent.hour,
+            "时间": utils.int_time2str_time(self.agent.time),
             "sensor_type": '',
             "sensor_state": '',
             "device_type": device_type,
@@ -152,6 +159,7 @@ class Event:
             'activity': self.activity_now
         }
         self.record.append(record_i)
+        self.agent.time += event_todo["duration"]
         print(f"控制事件: {event_todo}")
 
     def handle_execution_event(self, event_todo):
@@ -172,12 +180,23 @@ class Event:
         1.生成随机概率，执行随机活动
         2.若执行，返回True，否则，返回False
         """
+        # 获取基础概率参数（统一参数路径，减少重复访问）
+        prob_params = self.params["参数"]["电话"]["概率"]
+        # 确定电话概率（根据工作日/休息日区分）
+        is_weekday = self.agent.weekday in ["星期一", "星期二", "星期三", "星期四", "星期五"]
+        phone_prob = prob_params["工作日"] if is_weekday else prob_params["休息日"]
+        # 确定厕所概率（根据当前活动是否为睡觉区分）
+        toilet_prob = prob_params["睡眠"] if self.activity_now == "睡觉" else prob_params["白天"]
+        # 随机判断并执行活动
         rand = random.random()
-        activity = None
-        if rand < self.params['toilet_prob']:
+        total_toilet = toilet_prob
+        total_phone = total_toilet + phone_prob
+        if rand < total_toilet:
             activity = "toilet_activity"
-        elif rand < self.params['toilet_prob'] + self.params['phone_prob']:
+        elif rand < total_phone:
             activity = "phone_activity"
+        else:
+            activity = None
         if activity:
             self.handle_random_activity(activity)
             return True
@@ -211,5 +230,5 @@ class Event:
         result = self.agent.judge_phone_event()
         if result:
             print("更新安排")
-            self.update_schedule(result)
+            self.todo_schedule = result
         return

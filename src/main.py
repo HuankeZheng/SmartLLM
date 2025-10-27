@@ -9,7 +9,7 @@ env_config_dir = "config/env_config.json"
 with open(env_config_dir, 'r', encoding='utf-8') as file:
     env_config = json.load(file)
 map_matrix = utils.map_initialization(env_config)
-# utils.create_color_table(map_matrix)
+utils.create_color_table(map_matrix)
 
 # load user profile
 user_profile_dir = r"config/user_profile.json"
