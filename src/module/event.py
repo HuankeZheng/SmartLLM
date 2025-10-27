@@ -23,14 +23,15 @@ class Event:
         self.map_matrix = map_matrix
         self.params = {'toilet_prob': agent.toilet_prob, 'phone_prob': agent.phone_prob}
         self.record = []
-        self.current_activity = ''
-        self.current_event = ''
-        self.position_now = ''
-        self.activity_now = ''
+        self.position_now = None
+        self.activity_now = None
         self.todo_schedule = deque([])
+        self.done_schedule = deque([])
         self.phone_happened = 0
 
     def reset_state(self, current_day):
+        self.todo_schedule = deque([])
+        self.done_schedule = deque([])
         self.agent.weekday = utils.get_weekday(current_day)
         self.phone_happened = 0
 
@@ -59,10 +60,13 @@ class Event:
         while self.todo_schedule:
             # 1.后续安排不为空，则获得最新活动
             activity_todo = self.todo_schedule.popleft()
+            self.activity_now = activity_todo
             activity_name = activity_todo.get("activity_name")
             start_time = activity_todo.get("start_time")
             end_time = activity_todo.get("end_time")
             duration = utils.str_time2int_time(end_time) - utils.str_time2int_time(start_time)
+
+            self.activity_now["start_time"] = start_time
 
             # 2.判断最新活动是否有效
             activity_list = self.activity_config.get("活动配置", [])
@@ -82,10 +86,13 @@ class Event:
             # 4.事件序列结束后触发可能的随机活动
             self.trigger_random_activity()
 
+            self.activity_now["end_time"] = utils.int_time2str_time(self.agent.time)
+            self.done_schedule.append(activity_todo)
+
             # # 5.当前活动结束后，根据计划时间和当前时间，判断是否更新日程安排
             time_diff = utils.str_time2int_time(end_time) - self.agent.time
             if time_diff > 60:
-                self.agent.generate_follow_up_schedule()
+                self.agent.generate_follow_up_schedule(self.todo_schedule, self.done_schedule)
 
     def activity2event_list(self, activity, duration=1):
         """将活动转化为对应的可执行事件序列，并返回"""
@@ -192,10 +199,10 @@ class Event:
         """
 
         event_state = event_todo["状态"]
-        if event_state == "waiting":
+        if event_state == "waiting" or (event_state == "exclusive" and self.activity_now["活动名称"] == "睡觉"):
             flag = self.trigger_random_activity()
-            if not flag:
-                self.agent.judge_waiting_event(event_todo)
+            if not flag and event_state == "waiting":
+                self.agent.judge_waiting_event(self.activity_now, event_todo)
         else:
             self.agent.time += event_todo["duration"]
         return
@@ -211,10 +218,10 @@ class Event:
         # 确定电话概率（根据工作日/休息日区分）
         is_weekday = self.agent.weekday in ["星期一", "星期二", "星期三", "星期四", "星期五"]
         phone_prob = prob_params["工作日"] if is_weekday else prob_params["休息日"]
-        if self.phone_happened == 1:
+        if self.phone_happened == 1 or self.activity_now["活动名称"] == "睡觉":
             phone_prob = 0
         # 确定厕所概率（根据当前活动是否为睡觉区分）
-        toilet_prob = prob_params["睡眠"] if self.activity_now == "睡觉" else prob_params["白天"]
+        toilet_prob = prob_params["睡眠"] if self.activity_now["活动名称"] == "睡觉" else prob_params["白天"]
         toilet_prob = utils.adjust_toilet_prob(toilet_prob, self.agent.last_toilet_time - self.agent.time)
         # 随机判断并执行活动
         rand = random.random()
@@ -256,7 +263,7 @@ class Event:
         event_list = self.activity2event_list("phone活动")
         self.handle_event_list(event_list)
         # 2.根据决策是否更新日程安排
-        result = self.agent.judge_phone_event()
+        result = self.agent.judge_phone_event(self.todo_schedule, self.done_schedule)
         if result:
             print("更新安排")
             self.todo_schedule = result

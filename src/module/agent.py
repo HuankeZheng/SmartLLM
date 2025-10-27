@@ -7,9 +7,6 @@ class SmartAgent:
     def __init__(self, user_config, activity_list, prompt_dict):
         self.user_config = user_config
         self.activity_list = activity_list
-        self.current_schedule = None
-        self.past_schedule = None
-        self.past_activities = []
         self.user_profile = user_config['简介']
         self.user_lifestyle = ''
         self.prompt_dict = prompt_dict
@@ -38,15 +35,15 @@ class SmartAgent:
         schedule = json.loads(schedule)
         return schedule
 
-    def generate_follow_up_schedule(self):
+    def generate_follow_up_schedule(self, todo_schedule, done_schedule):
         # 更新日计划
         # 1.读取内容，合成prompt
         prompt_format = self.prompt_dict["update_day_plan"]
         variables = {
             "user_profile": self.user_profile,
             "lifestyle": self.user_lifestyle,
-            "schedule": self.current_schedule,
-            "past_schedule": self.past_schedule,
+            "schedule": todo_schedule,
+            "past_schedule": done_schedule,
             "weekday": self.weekday,
             "activity_list": self.activity_list
         }
@@ -57,16 +54,16 @@ class SmartAgent:
         schedule = json.loads(schedule)
         return schedule
 
-    def judge_waiting_event(self, current_activity, current_waiting_event):
+    def judge_waiting_event(self, todo_schedule, done_schedule, current_activity, current_waiting_event):
         """判断waiting事件处理方式"""
         # 1.读取内容，合成prompt
         prompt_format = self.prompt_dict["decide_do_what_waiting"]
         variables = {
             "user_profile": self.user_profile,
             "lifestyle": self.user_lifestyle,
-            "schedule": self.current_schedule,
-            "past_schedule": self.past_schedule,
-            "activity": current_activity,
+            "schedule": todo_schedule,
+            "past_schedule": done_schedule,
+            "activity": current_activity["活动名称"],
             "event_name": current_waiting_event["event_name"],
             "event_time": current_waiting_event["event_time"],
             "weekday": self.weekday,
@@ -79,15 +76,15 @@ class SmartAgent:
         print(f"在等待过程中进行活动: {choose_activity}")
         return choose_activity
 
-    def judge_phone_event(self):
+    def judge_phone_event(self, todo_schedule, done_schedule):
         """判断phone事件处理方式"""
         # 1.读取内容，合成prompt
         prompt_format = self.prompt_dict["decide_do_what_waiting"]
         variables = {
             "user_profile": self.user_profile,
             "lifestyle": self.user_lifestyle,
-            "schedule": self.current_schedule,
-            "past_schedule": self.past_schedule,
+            "todo_schedule": todo_schedule,
+            "past_schedule": done_schedule,
             "weekday": self.weekday,
             "activity_list": self.activity_list
         }
@@ -99,7 +96,7 @@ class SmartAgent:
             print("不进行计划修改")
             return None
         else:
-            print(f"原计划: {self.past_schedule}")
+            print(f"原计划: {todo_schedule}")
             print(f"修改后计划为: {phone_decision}")
             phone_decision = json.loads(phone_decision)
             return phone_decision
