@@ -1,6 +1,7 @@
 import json
 import numpy as np
 import matplotlib
+from collections import deque
 
 matplotlib.use('TkAgg')  # 或其他可用后端如'Qt5Agg'
 import matplotlib.pyplot as plt
@@ -142,18 +143,97 @@ def get_activity_str(data):
     print(activity_str)
 
 
-from collections import deque
+def move_to_area(position_from, area_to, map_matrix):
+    """
+    移动到目标区域内的任意可达位置
+
+    Args:
+        position_from: 起点位置 [x, y]
+        area_to: 目标区域字典，包含多个子区域
+        map_matrix: 地图矩阵，0表示可达，1表示障碍
+
+    Returns:
+        最短路径列表，如果无法到达则返回空列表
+    """
+    # 如果起点不可达，直接返回空路径
+    if not is_valid_position(position_from, map_matrix):
+        return []
+
+    # 如果起点已经在目标区域内
+    if is_position_in_area(position_from, area_to):
+        return [position_from]
+
+    rows = len(map_matrix)
+    cols = len(map_matrix[0]) if rows > 0 else 0
+
+    # 方向：上、右、下、左
+    directions = [(-1, 0), (0, 1), (1, 0), (0, -1)]
+
+    # 记录访问状态、路径和距离
+    visited = [[False] * cols for _ in range(rows)]
+    parent = [[None] * cols for _ in range(rows)]
+    distance = [[-1] * cols for _ in range(rows)]
+
+    # BFS队列
+    queue = deque()
+    start_x, start_y = position_from
+    queue.append((start_x, start_y))
+    visited[start_x][start_y] = True
+    distance[start_x][start_y] = 0
+
+    found_positions = []  # 存储找到的目标区域内的位置
+
+    while queue:
+        x, y = queue.popleft()
+
+        # 如果当前位置在目标区域内，记录下来
+        if is_position_in_area([x, y], area_to):
+            found_positions.append((x, y, distance[x][y]))
+
+        # 遍历四个方向
+        for dx, dy in directions:
+            nx, ny = x + dx, y + dy
+
+            # 检查新位置是否有效且未被访问
+            if (0 <= nx < rows and 0 <= ny < cols and
+                    not visited[nx][ny] and is_valid_position([nx, ny], map_matrix)):
+                visited[nx][ny] = True
+                parent[nx][ny] = (x, y)
+                distance[nx][ny] = distance[x][y] + 1
+                queue.append((nx, ny))
+
+    # 如果没有找到任何可达的目标位置
+    if not found_positions:
+        return []
+
+    # 找到距离最近的目标位置
+    found_positions.sort(key=lambda pos: pos[2])  # 按距离排序
+    closest_x, closest_y, _ = found_positions[0]
+
+    # 回溯构建路径
+    path = []
+    current = (closest_x, closest_y)
+
+    # 回溯到起点
+    while current != (start_x, start_y):
+        path.append([current[0], current[1]])
+        current = parent[current[0]][current[1]]
+
+    path.append([start_x, start_y])
+    path.reverse()  # 反转路径，从起点到终点
+
+    return path
 
 
-def calculate_path(destination_from, destination_to, map_matrix):
+def move_to_position(position_from, position_to, map_matrix):
     # 如果起点或终点不可达，直接返回空路径
-    if (not is_valid_position(destination_from, map_matrix) or
-            not is_valid_position(destination_to, map_matrix)):
+    if (not is_valid_position(position_from, map_matrix) or
+            not is_valid_position(position_to, map_matrix)):
         return []
 
     # 如果起点和终点相同
-    if destination_from == destination_to:
-        return [destination_from]
+    if position_from == position_to:
+        return [position_from]
 
     # BFS寻找最短路径
     rows = len(map_matrix)
@@ -168,12 +248,12 @@ def calculate_path(destination_from, destination_to, map_matrix):
 
     # BFS队列
     queue = deque()
-    start_x, start_y = destination_from
+    start_x, start_y = position_from
     queue.append((start_x, start_y))
     visited[start_x][start_y] = True
 
     found = False
-    end_x, end_y = destination_to
+    end_x, end_y = position_to
 
     while queue:
         x, y = queue.popleft()
@@ -212,6 +292,25 @@ def calculate_path(destination_from, destination_to, map_matrix):
     return []  # 没有找到路径
 
 
+def is_position_in_area(position, area_to):
+    """
+    检查位置是否在目标区域的任何一个子区域内
+    """
+    x, y = position
+
+    # 遍历所有子区域
+    for area_name, area_bounds in area_to.items():
+        xmin = area_bounds["xmin"]
+        xhigh = area_bounds["xhigh"]
+        ymin = area_bounds["ymin"]
+        yhigh = area_bounds["yhigh"]
+
+        if (xmin <= x <= xhigh and ymin <= y <= yhigh):
+            return True
+
+    return False
+
+
 def is_valid_position(position, map_matrix):
     """检查位置是否有效且可达"""
     x, y = position
@@ -244,26 +343,152 @@ def int_time2str_time(int_time):
     return f"{hour:02d}:{minute:02d}"
 
 
-# 测试示例
+def adjust_toilet_prob(toilet_prob, diff_time):
+    if diff_time < 1:
+        # 1小时内上过厕所，概率大幅降低
+        time_factor = 0.1
+    elif diff_time < 3:
+        # 1-3小时内上过厕所，概率适度降低
+        time_factor = 0.3
+    elif diff_time < 6:
+        # 3-6小时内上过厕所，概率轻微降低
+        time_factor = 0.7
+    elif diff_time > 8:
+        # 超过8小时没上厕所，概率适度增加
+        time_factor = 2
+    else:
+        # 6-8小时，正常概率
+        time_factor = 1.0
+    return time_factor * toilet_prob
+
+
+# # 测试示例
+# if __name__ == "__main__":
+#     # 测试地图
+#     test_map = [
+#         [0, 0, 0, 0],
+#         [0, -1, 4, 0],
+#         [0, 0, 0, 0],
+#         [0, 4, -1, 0]
+#     ]
+#
+#     # 测试用例
+#     start = [0, 0]
+#     end = [3, 3]
+#
+#     path = move_to_position(start, end, test_map)
+#     print("路径:", path)
+#
+#     # 另一个测试用例
+#     start2 = [0, 0]
+#     end2 = [1, 2]  # 这个位置不可达
+#
+#     path2 = move_to_position(start2, end2, test_map)
+#     print("到不可达位置的路径:", path2)
+
 if __name__ == "__main__":
-    # 测试地图
-    test_map = [
+    # 测试地图1：简单无障碍地图
+    test_map1 = [
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0]
+    ]
+
+    # 测试地图2：有障碍物地图
+    test_map2 = [
         [0, 0, 0, 0],
         [0, -1, 4, 0],
         [0, 0, 0, 0],
         [0, 4, -1, 0]
     ]
 
-    # 测试用例
-    start = [0, 0]
-    end = [3, 3]
+    # 测试地图3：复杂障碍地图
+    test_map3 = [
+        [0, 0, 1, 0, 0],
+        [0, 0, 1, 0, 0],
+        [0, 0, 1, 0, 0],
+        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0]
+    ]
 
-    path = calculate_path(start, end, test_map)
-    print("路径:", path)
+    # 定义目标区域
+    area1 = {
+        "区域一": {
+            "xmin": 2,
+            "xhigh": 3,
+            "ymin": 2,
+            "yhigh": 3
+        }
+    }
 
-    # 另一个测试用例
+    area2 = {
+        "区域一": {
+            "xmin": 1,
+            "xhigh": 2,
+            "ymin": 1,
+            "yhigh": 2
+        },
+        "区域二": {
+            "xmin": 3,
+            "xhigh": 3,
+            "ymin": 3,
+            "yhigh": 3
+        }
+    }
+
+    print("=== 测试1: 简单地图到单区域 ===")
+    start1 = [0, 0]
+    path1 = move_to_area(start1, area1, test_map1)
+    print(f"从 {start1} 到区域 {area1} 的路径: {path1}")
+
+    print("\n=== 测试2: 有障碍物地图到单区域 ===")
     start2 = [0, 0]
-    end2 = [1, 2]  # 这个位置不可达
+    path2 = move_to_area(start2, area1, test_map2)
+    print(f"从 {start2} 到区域 {area1} 的路径: {path2}")
 
-    path2 = calculate_path(start2, end2, test_map)
-    print("到不可达位置的路径:", path2)
+    print("\n=== 测试3: 复杂地图到多区域 ===")
+    start3 = [0, 0]
+    path3 = move_to_area(start3, area2, test_map3)
+    print(f"从 {start3} 到区域 {area2} 的路径: {path3}")
+
+    print("\n=== 测试4: 起点已在区域内 ===")
+    start4 = [2, 2]
+    path4 = move_to_area(start4, area1, test_map1)
+    print(f"从 {start4} 到区域 {area1} 的路径: {path4}")
+
+    print("\n=== 测试5: 无法到达区域 ===")
+    # 创建一个被隔离的区域
+    isolated_area = {
+        "隔离区域": {
+            "xmin": 0,
+            "xhigh": 0,
+            "ymin": 4,
+            "yhigh": 4
+        }
+    }
+    start5 = [0, 0]
+    path5 = move_to_area(start5, isolated_area, test_map3)
+    print(f"从 {start5} 到区域 {isolated_area} 的路径: {path5}")
+
+    print("\n=== 测试6: 你的示例区域 ===")
+    example_area = {
+        "区域一": {
+            "xmin": 1,
+            "xhigh": 8,
+            "ymin": 1,
+            "yhigh": 10
+        },
+        "区域二": {
+            "xmin": 9,
+            "xhigh": 10,
+            "ymin": 4,
+            "yhigh": 10
+        }
+    }
+    # 创建一个更大的测试地图
+    large_map = [[0] * 11 for _ in range(11)]
+    start6 = [0, 0]
+    path6 = move_to_area(start6, example_area, large_map)
+    print(f"从 {start6} 到示例区域的路径长度: {len(path6)}")
+    print(f"路径终点: {path6[-1] if path6 else '无路径'}")

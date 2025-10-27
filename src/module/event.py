@@ -25,7 +25,7 @@ class Event:
         self.record = []
         self.current_activity = ''
         self.current_event = ''
-        self.destination_now = ''
+        self.position_now = ''
         self.activity_now = ''
         self.todo_schedule = deque([])
         self.phone_happened = 0
@@ -124,29 +124,38 @@ class Event:
         """
         执行移动事件
         """
-        destination_from = self.destination_now
+        position_from = self.position_now
         destination_to = event_todo["目标"]
-        path = utils.calculate_path(destination_from, destination_to, map_matrix=self.map_matrix)
-        for destination in path:
-            for sensor_name, sensor in self.env_config["环境配置"]["传感器"].items():
-                destination_x = destination["x"]
-                destination_y = destination["y"]
-                sensor_x = sensor["x"]
-                sensor_y = sensor["y"]
-                if abs(destination_x - sensor_x) <= 1 and abs(destination_y - sensor_y) <= 1:
-                    print(f"触发{sensor_name}")
-                    record_i = {
-                        "星期": self.agent.weekday,
-                        "时间": utils.int_time2str_time(self.agent.time),
-                        "sensor_type": sensor_name,
-                        "sensor_state": 'ON',
-                        "device_type": '',
-                        'device_state': '',
-                        'activity': self.activity_now
-                    }
-                    self.record.append(record_i)
-        self.destination_now = destination_to
-        self.agent.time += event_todo["duration"]
+        if event_todo["状态"] == "区域":
+            area_to = self.env_config["有效区域"][destination_to]
+            path = utils.move_to_area(position_from=position_from, area_to=area_to, map_matrix=self.map_matrix)
+        elif event_todo["状态"] == "位置":
+            position_to = self.env_config["设施"][destination_to]
+            path = utils.move_to_position(position_from=position_from, position_to=position_to,
+                                          map_matrix=self.map_matrix)
+        else:
+            path = []
+        if path:
+            for destination in path:
+                for sensor_name, sensor in self.env_config["环境配置"]["传感器"].items():
+                    destination_x = destination["x"]
+                    destination_y = destination["y"]
+                    sensor_x = sensor["x"]
+                    sensor_y = sensor["y"]
+                    if abs(destination_x - sensor_x) <= 1 and abs(destination_y - sensor_y) <= 1:
+                        print(f"触发{sensor_name}")
+                        record_i = {
+                            "星期": self.agent.weekday,
+                            "时间": utils.int_time2str_time(self.agent.time),
+                            "sensor_type": sensor_name,
+                            "sensor_state": 'ON',
+                            "device_type": '',
+                            'device_state': '',
+                            'activity': self.activity_now
+                        }
+                        self.record.append(record_i)
+            self.position_now = path[-1]
+            self.agent.time += event_todo["duration"]
         print(f"移动事件: {event_todo}")
 
     def execute_control(self, event_todo):
@@ -174,10 +183,14 @@ class Event:
         1.随机事件处理逻辑
         2.若没有触发随机事件且为等待型执行事件，则进入等待事件处理逻辑
         """
-        flag = self.trigger_random_activity()
+
         event_state = event_todo["状态"]
-        if not flag and event_state == "waiting":
-            self.agent.judge_waiting_event(event_todo)
+        if event_state == "waiting":
+            flag = self.trigger_random_activity()
+            if not flag:
+                self.agent.judge_waiting_event(event_todo)
+        else:
+            self.agent.time += event_todo["duration"]
         return
 
     def trigger_random_activity(self):
@@ -191,8 +204,11 @@ class Event:
         # 确定电话概率（根据工作日/休息日区分）
         is_weekday = self.agent.weekday in ["星期一", "星期二", "星期三", "星期四", "星期五"]
         phone_prob = prob_params["工作日"] if is_weekday else prob_params["休息日"]
+        if self.phone_happened == 1:
+            phone_prob = 0
         # 确定厕所概率（根据当前活动是否为睡觉区分）
         toilet_prob = prob_params["睡眠"] if self.activity_now == "睡觉" else prob_params["白天"]
+        toilet_prob = utils.adjust_toilet_prob(toilet_prob, self.agent.last_toilet_time - self.agent.time)
         # 随机判断并执行活动
         rand = random.random()
         total_toilet = toilet_prob
