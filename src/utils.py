@@ -139,8 +139,13 @@ def get_activity_str(data):
     activity_str = ''
     for activity in data['活动配置']:
         activity_name = activity['活动名称']
-        activity_str = activity_name + ', ' + activity_str
+        if activity_name not in ["厕所", "电话"]:
+            if activity_str == '':
+                activity_str = activity_name
+            else:
+                activity_str = activity_str + ', ' + activity_name
     print(activity_str)
+    return activity_str
 
 
 def move_to_area(position_from, area_to, map_matrix):
@@ -321,9 +326,9 @@ def is_valid_position(position, map_matrix):
     if x < 0 or x >= rows or y < 0 or y >= cols:
         return False
 
-    # 检查是否可达（值不为-1且不为4）
+    # 检查是否可达（值不为-1）
     value = map_matrix[x][y]
-    return value != -1 and value != 4
+    return value != -1
 
 
 def str_time2int_time(str_time):

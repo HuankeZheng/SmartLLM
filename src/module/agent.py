@@ -11,6 +11,7 @@ class SmartAgent:
         self.user_lifestyle = ''
         self.prompt_dict = prompt_dict
         self.weekday = ""
+        self.time = ""
         for i, lifestyle_i in enumerate(user_config['特性']):
             self.user_lifestyle += f'{i + 1}.{lifestyle_i};'
 
@@ -21,11 +22,24 @@ class SmartAgent:
         2.输入prompt，得到输出结果，并返回
         """
         prompt_format = self.prompt_dict["generate_new_day_plan"]
+        plan_reference = json.loads(self.prompt_dict["daily_plan_reference.json"])[self.user_config["用户名称"]]
+
+        DAY_CATEGORY = {
+            "星期一": "工作日", "星期二": "工作日", "星期三": "工作日",
+            "星期四": "工作日", "星期五": "工作日",
+            "星期六": "周末", "星期日": "周末"
+        }
+        category = DAY_CATEGORY.get(self.weekday)
+        if category and plan_reference.get(category):
+            plan_reference = plan_reference[category]
+        else:
+            plan_reference = plan_reference["default"]
+
         variables = {
             "user_profile": self.user_profile,
-            "lifestyle": self.user_lifestyle,
+            "user_lifestyle": self.user_lifestyle,
             "weekday": self.weekday,
-            "schedule_sample": self.prompt_dict["daily_plan_reference.json"][self.user_config["用户名称"]],
+            "schedule_sample": plan_reference,
             "activity_list": self.activity_list
         }
         prompt = prompt_format.format(**variables)
@@ -41,8 +55,8 @@ class SmartAgent:
         prompt_format = self.prompt_dict["update_day_plan"]
         variables = {
             "user_profile": self.user_profile,
-            "lifestyle": self.user_lifestyle,
-            "schedule": todo_schedule,
+            "user_lifestyle": self.user_lifestyle,
+            "todo_schedule": todo_schedule,
             "past_schedule": done_schedule,
             "weekday": self.weekday,
             "activity_list": self.activity_list
@@ -60,12 +74,12 @@ class SmartAgent:
         prompt_format = self.prompt_dict["decide_do_what_waiting"]
         variables = {
             "user_profile": self.user_profile,
-            "lifestyle": self.user_lifestyle,
-            "schedule": todo_schedule,
+            "user_lifestyle": self.user_lifestyle,
+            "todo_schedule": todo_schedule,
             "past_schedule": done_schedule,
-            "activity": current_activity["活动名称"],
-            "event_name": current_waiting_event["event_name"],
-            "event_time": current_waiting_event["event_time"],
+            "activity": current_activity["activity_name"],
+            "event_name": current_waiting_event["目标"],
+            "event_time": current_waiting_event["duration"],
             "weekday": self.weekday,
             "activity_list": self.activity_list
         }
@@ -79,10 +93,10 @@ class SmartAgent:
     def judge_phone_event(self, todo_schedule, done_schedule):
         """判断phone事件处理方式"""
         # 1.读取内容，合成prompt
-        prompt_format = self.prompt_dict["decide_do_what_waiting"]
+        prompt_format = self.prompt_dict["decide_whether_step_out"]
         variables = {
             "user_profile": self.user_profile,
-            "lifestyle": self.user_lifestyle,
+            "user_lifestyle": self.user_lifestyle,
             "todo_schedule": todo_schedule,
             "past_schedule": done_schedule,
             "weekday": self.weekday,

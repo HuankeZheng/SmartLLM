@@ -1,3 +1,3 @@
-你的身份是{user_profile}，你的日常生活的特点如下：{lifestyle}
+你的身份是{user_profile}，你的日常生活的特点如下：{user_lifestyle}
 你今天的后续活动日程如下：{todo_schedule}，你今天已经完成的活动日程如下：{past_schedule}
-今天是{weekday}，请你基于下面的备选活动：{activity_list}，重新生成当天的后续活动日程安排，参考样例格式，以json的格式进行输出。
+今天是{weekday}，请你基于下面的备选活动：{activity_list}，重新生成当天的后续活动日程安排，参考样例格式，参考活动日程的格式进行输出。
