@@ -1,0 +1,731 @@
+{
+  "activity_config": [
+    {
+      "activity_name": "Sleeping",
+      "event_sequence": {
+        "normal": [
+          {
+            "step": "step1",
+            "target": "Bedroom",
+            "attribute": "Movement",
+            "state": "area"
+          },
+          {
+            "step": "step2",
+            "target": "BedroomNightLight",
+            "attribute": "control",
+            "state": "ON"
+          },
+          {
+            "step": "step3",
+            "target": "BedroomBed",
+            "attribute": "Movement",
+            "state": "position"
+          },
+          {
+            "step": "step4",
+            "target": "BedroomNightLight",
+            "attribute": "control",
+            "state": "OFF"
+          },
+          {
+            "step": "step5",
+            "target": "Rest",
+            "attribute": "execution",
+            "state": "doing",
+            "Generate": "plan"
+          }
+        ]
+      },
+      "attribute": "Schedule"
+    },
+    {
+      "activity_name": "Daytime Rest",
+      "event_sequence": {
+        "normal": [
+          {
+            "step": "step1",
+            "target": "Bedroom",
+            "attribute": "Movement",
+            "state": "area"
+          },
+          {
+            "step": "step2",
+            "target": "BedroomBed",
+            "attribute": "Movement",
+            "state": "position"
+          },
+          {
+            "step": "step3",
+            "target": "Rest",
+            "attribute": "execution",
+            "state": "doing",
+            "Generate": "plan"
+          }
+        ]
+      },
+      "attribute": "Schedule"
+    },
+    {
+      "activity_name": "Eating",
+      "event_sequence": {
+        "normal": [
+          {
+            "step": "step1",
+            "target": "Kitchen",
+            "attribute": "Movement",
+            "state": "area"
+          },
+          {
+            "step": "step2",
+            "target": "LivingRoom",
+            "attribute": "Movement",
+            "state": "area"
+          },
+          {
+            "step": "step3",
+            "target": "DiningTable",
+            "attribute": "Movement",
+            "state": "position"
+          },
+          {
+            "step": "step4",
+            "target": "Eating",
+            "attribute": "execution",
+            "state": "exclusive",
+            "Generate": "plan"
+          }
+        ]
+      },
+      "attribute": "Schedule"
+    },
+    {
+      "activity_name": "Washing Dishes",
+      "event_sequence": {
+        "normal": [
+          {
+            "step": "step1",
+            "target": "LivingRoom",
+            "attribute": "Movement",
+            "state": "area"
+          },
+          {
+            "step": "step2",
+            "target": "DiningTable",
+            "attribute": "Movement",
+            "state": "position"
+          },
+          {
+            "step": "step3",
+            "target": "ClearingDishes",
+            "attribute": "execution",
+            "state": "exclusive",
+            "Generate": "random"
+          },
+          {
+            "step": "step4",
+            "target": "Kitchen",
+            "attribute": "Movement",
+            "state": "area"
+          },
+          {
+            "step": "step5",
+            "target": "DishWasher",
+            "attribute": "Movement",
+            "state": "position"
+          },
+          {
+            "step": "step6",
+            "target": "DishWasher",
+            "attribute": "control",
+            "state": "ON"
+          },
+          {
+            "step": "step7",
+            "target": "DishWasher",
+            "attribute": "execution",
+            "state": "waiting",
+            "Generate": "plan"
+          },
+          {
+            "step": "step10",
+            "target": "DishWasher",
+            "attribute": "control",
+            "state": "OFF"
+          },
+          {
+            "step": "step11",
+            "target": "ClearingDishes",
+            "attribute": "execution",
+            "state": "exclusive",
+            "Generate": "random"
+          }
+        ]
+      },
+      "attribute": "Schedule"
+    },
+    {
+      "activity_name": "Cooking",
+      "event_sequence": {
+        "Stir-frying": [
+          {
+            "step": "step1",
+            "target": "Kitchen",
+            "attribute": "Movement",
+            "state": "area"
+          },
+          {
+            "step": "step2",
+            "target": "Fridge",
+            "attribute": "Movement",
+            "state": "position"
+          },
+          {
+            "step": "step3",
+            "target": "Fridge",
+            "attribute": "control",
+            "state": "ON"
+          },
+          {
+            "step": "step4",
+            "target": "Fridge",
+            "attribute": "control",
+            "state": "OFF"
+          },
+          {
+            "step": "step5",
+            "target": "PreparingIngredients",
+            "attribute": "execution",
+            "state": "exclusive",
+            "Generate": "random"
+          },
+          {
+            "step": "step6",
+            "target": "Stove",
+            "attribute": "Movement",
+            "state": "position"
+          },
+          {
+            "step": "step7",
+            "target": "Stove",
+            "attribute": "control",
+            "state": "ON"
+          },
+          {
+            "step": "step8",
+            "target": "Stove",
+            "attribute": "execution",
+            "state": "exclusive",
+            "Generate": "random"
+          },
+          {
+            "step": "step9",
+            "target": "Stove",
+            "attribute": "control",
+            "state": "OFF"
+          }
+        ],
+        "Stewing": [
+          {
+            "step": "step1",
+            "target": "Kitchen",
+            "attribute": "Movement",
+            "state": "area"
+          },
+          {
+            "step": "step2",
+            "target": "Fridge",
+            "attribute": "Movement",
+            "state": "position"
+          },
+          {
+            "step": "step3",
+            "target": "Fridge",
+            "attribute": "control",
+            "state": "ON"
+          },
+          {
+            "step": "step4",
+            "target": "Fridge",
+            "attribute": "control",
+            "state": "OFF"
+          },
+          {
+            "step": "step5",
+            "target": "PreparingIngredients",
+            "attribute": "execution",
+            "state": "exclusive",
+            "Generate": "random"
+          },
+          {
+            "step": "step6",
+            "target": "Stove",
+            "attribute": "Movement",
+            "state": "position"
+          },
+          {
+            "step": "step7",
+            "target": "Stove",
+            "attribute": "control",
+            "state": "ON"
+          },
+          {
+            "step": "step8",
+            "target": "Stove",
+            "attribute": "execution",
+            "state": "waiting",
+            "Generate": "plan"
+          },
+          {
+            "step": "step9",
+            "target": "Stove",
+            "attribute": "control",
+            "state": "OFF"
+          }
+        ],
+        "Heating": [
+          {
+            "step": "step1",
+            "target": "Kitchen",
+            "attribute": "Movement",
+            "state": "area"
+          },
+          {
+            "step": "step2",
+            "target": "Fridge",
+            "attribute": "Movement",
+            "state": "position"
+          },
+          {
+            "step": "step3",
+            "target": "Fridge",
+            "attribute": "control",
+            "state": "ON"
+          },
+          {
+            "step": "step4",
+            "target": "Fridge",
+            "attribute": "control",
+            "state": "OFF"
+          },
+          {
+            "step": "step5",
+            "target": "Microwave",
+            "attribute": "Movement",
+            "state": "position"
+          },
+          {
+            "step": "step6",
+            "target": "Microwave",
+            "attribute": "control",
+            "state": "ON"
+          },
+          {
+            "step": "step7",
+            "target": "Microwave",
+            "attribute": "execution",
+            "state": "exclusive",
+            "Generate": "random"
+          },
+          {
+            "step": "step8",
+            "target": "Microwave",
+            "attribute": "control",
+            "state": "OFF"
+          }
+        ]
+      },
+      "attribute": "Schedule"
+    },
+    {
+      "activity_name": "Working",
+      "event_sequence": {
+        "normal": [
+          {
+            "step": "step1",
+            "target": "Study",
+            "attribute": "Movement",
+            "state": "area"
+          },
+          {
+            "step": "step2",
+            "target": "StudyLight",
+            "attribute": "control",
+            "state": "ON"
+          },
+          {
+            "step": "step3",
+            "target": "StudyChair",
+            "attribute": "Movement",
+            "state": "position"
+          },
+          {
+            "step": "step4",
+            "target": "Computer",
+            "attribute": "control",
+            "state": "ON"
+          },
+          {
+            "step": "step5",
+            "target": "Working",
+            "attribute": "execution",
+            "state": "doing",
+            "Generate": "plan"
+          },
+          {
+            "step": "step8",
+            "target": "Computer",
+            "attribute": "control",
+            "state": "OFF"
+          },
+          {
+            "step": "step9",
+            "target": "StudyLight",
+            "attribute": "control",
+            "state": "OFF"
+          }
+        ]
+      },
+      "attribute": "Schedule"
+    },
+    {
+      "activity_name": "Watching TV",
+      "event_sequence": {
+        "normal": [
+          {
+            "step": "step1",
+            "target": "LivingRoom",
+            "attribute": "Movement",
+            "state": "area"
+          },
+          {
+            "step": "step2",
+            "target": "LivingRoomLight",
+            "attribute": "control",
+            "state": "ON"
+          },
+          {
+            "step": "step3",
+            "target": "Sofa",
+            "attribute": "Movement",
+            "state": "position"
+          },
+          {
+            "step": "step4",
+            "target": "Television",
+            "attribute": "control",
+            "state": "ON"
+          },
+          {
+            "step": "step5",
+            "target": "WatchingTV",
+            "attribute": "execution",
+            "state": "doing",
+            "Generate": "plan"
+          },
+          {
+            "step": "step8",
+            "target": "Television",
+            "attribute": "control",
+            "state": "OFF"
+          },
+          {
+            "step": "step9",
+            "target": "LivingRoomLight",
+            "attribute": "control",
+            "state": "OFF"
+          }
+        ]
+      },
+      "attribute": "Schedule"
+    },
+    {
+      "activity_name": "Reading",
+      "event_sequence": {
+        "normal": [
+          {
+            "step": "step1",
+            "target": "Study",
+            "attribute": "Movement",
+            "state": "area"
+          },
+          {
+            "step": "step2",
+            "target": "StudyLight",
+            "attribute": "control",
+            "state": "ON"
+          },
+          {
+            "step": "step3",
+            "target": "StudyChair",
+            "attribute": "Movement",
+            "state": "position"
+          },
+          {
+            "step": "step4",
+            "target": "Reading",
+            "attribute": "execution",
+            "state": "doing",
+            "Generate": "plan"
+          },
+          {
+            "step": "step7",
+            "target": "StudyLight",
+            "attribute": "control",
+            "state": "OFF"
+          }
+        ]
+      },
+      "attribute": "Schedule"
+    },
+    {
+      "activity_name": "Washing Up",
+      "event_sequence": {
+        "normal": [
+          {
+            "step": "step1",
+            "target": "Toilet",
+            "attribute": "Movement",
+            "state": "area"
+          },
+          {
+            "step": "step2",
+            "target": "ToiletLight",
+            "attribute": "control",
+            "state": "ON"
+          },
+          {
+            "step": "step3",
+            "target": "WaterTap",
+            "attribute": "Movement",
+            "state": "position"
+          },
+          {
+            "step": "step4",
+            "target": "WaterTap",
+            "attribute": "control",
+            "state": "ON"
+          },
+          {
+            "step": "step5",
+            "target": "WashingUp",
+            "attribute": "execution",
+            "state": "exclusive",
+            "Generate": "random"
+          },
+          {
+            "step": "step6",
+            "target": "WaterTap",
+            "attribute": "control",
+            "state": "OFF"
+          },
+          {
+            "step": "step7",
+            "target": "ToiletLight",
+            "attribute": "control",
+            "state": "OFF"
+          }
+        ]
+      },
+      "attribute": "Schedule"
+    },
+    {
+      "activity_name": "Bathing",
+      "event_sequence": {
+        "normal": [
+          {
+            "step": "step1",
+            "target": "Toilet",
+            "attribute": "Movement",
+            "state": "area"
+          },
+          {
+            "step": "step2",
+            "target": "ToiletLight",
+            "attribute": "control",
+            "state": "ON"
+          },
+          {
+            "step": "step3",
+            "target": "ShowerHead",
+            "attribute": "Movement",
+            "state": "position"
+          },
+          {
+            "step": "step4",
+            "target": "ShowerHead",
+            "attribute": "control",
+            "state": "ON"
+          },
+          {
+            "step": "step5",
+            "target": "Bathing",
+            "attribute": "execution",
+            "state": "exclusive",
+            "Generate": "random"
+          },
+          {
+            "step": "step6",
+            "target": "ShowerHead",
+            "attribute": "control",
+            "state": "OFF"
+          },
+          {
+            "step": "step7",
+            "target": "ToiletLight",
+            "attribute": "control",
+            "state": "OFF"
+          }
+        ]
+      },
+      "attribute": "Schedule"
+    },
+    {
+      "activity_name": "Toilet",
+      "event_sequence": {
+        "normal": [
+          {
+            "step": "step1",
+            "target": "Toilet",
+            "attribute": "Movement",
+            "state": "area"
+          },
+          {
+            "step": "step2",
+            "target": "ToiletLight",
+            "attribute": "control",
+            "state": "ON"
+          },
+          {
+            "step": "step3",
+            "target": "ToiletBowl",
+            "attribute": "Movement",
+            "state": "position"
+          },
+          {
+            "step": "step4",
+            "target": "ToiletBowl",
+            "attribute": "control",
+            "state": "ON"
+          },
+          {
+            "step": "step5",
+            "target": "Toilet",
+            "attribute": "execution",
+            "state": "exclusive",
+            "Generate": "random"
+          },
+          {
+            "step": "step6",
+            "target": "ToiletBowl",
+            "attribute": "control",
+            "state": "OFF"
+          },
+          {
+            "step": "step7",
+            "target": "WaterTap",
+            "attribute": "Movement",
+            "state": "position"
+          },
+          {
+            "step": "step8",
+            "target": "WaterTap",
+            "attribute": "control",
+            "state": "ON"
+          },
+          {
+            "step": "step9",
+            "target": "WaterTap",
+            "attribute": "control",
+            "state": "OFF"
+          },
+          {
+            "step": "step10",
+            "target": "ToiletLight",
+            "attribute": "control",
+            "state": "OFF"
+          }
+        ]
+      },
+      "attribute": "Random"
+    },
+    {
+      "activity_name": "Going Out",
+      "event_sequence": {
+        "normal": [
+          {
+            "step": "step1",
+            "target": "Entrance",
+            "attribute": "Movement",
+            "state": "area"
+          },
+          {
+            "step": "step2",
+            "target": "Gate",
+            "attribute": "Movement",
+            "state": "position"
+          },
+          {
+            "step": "step3",
+            "target": "Gate",
+            "attribute": "control",
+            "state": "ON"
+          },
+          {
+            "step": "step4",
+            "target": "Gate",
+            "attribute": "control",
+            "state": "OFF"
+          },
+          {
+            "step": "step5",
+            "target": "GoingOut",
+            "attribute": "execution",
+            "state": "exclusive",
+            "Generate": "plan"
+          },
+          {
+            "step": "step6",
+            "target": "Gate",
+            "attribute": "control",
+            "state": "ON"
+          },
+          {
+            "step": "step7",
+            "target": "Gate",
+            "attribute": "control",
+            "state": "OFF"
+          }
+        ]
+      },
+      "attribute": "Schedule"
+    },
+    {
+      "activity_name": "Phone",
+      "event_sequence": {
+        "normal": [
+          {
+            "step": "step1",
+            "target": "Phone",
+            "attribute": "control",
+            "state": "ON"
+          },
+          {
+            "step": "step2",
+            "target": "Phone",
+            "attribute": "execution",
+            "state": "exclusive",
+            "Generate": "random"
+          },
+          {
+            "step": "step3",
+            "target": "Phone",
+            "attribute": "control",
+            "state": "OFF"
+          }
+        ]
+      },
+      "attribute": "Random"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+Your identity is {user_profile}, and your daily life is characterized by: {user_lifestyle}
+Your remaining schedule for today is as follows: {todo_schedule}, and your completed schedule for today is as follows: {past_schedule}
+Today is {weekday}.Please regenerate the schedule for the remainder of the day. This schedule should begin after completing the last activity and end with Sleeping. Strictly adhere to the activity options: "{activity_list}", no activities outside this list should appear. Output the schedule in the format referenced, without any additional content.

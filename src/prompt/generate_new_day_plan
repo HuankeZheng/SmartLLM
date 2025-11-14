@@ -1,0 +1,3 @@
+Your identity is {user_profile}, and your daily life is characterized by: {user_lifestyle}
+Below is a sample schedule: {schedule_sample}
+Today is {weekday}. Generate your daily schedule starting from waking up and ending at sleeping. Strictly adhere to the provided activity options: "{activity_list}"; do not include any activities outside the activity options. Output the schedule in the format shown in the example, without any additional content.

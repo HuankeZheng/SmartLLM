@@ -1,0 +1,396 @@
+{
+  "OldMan": {
+    "default": [
+      {
+        "activity_name": "Washing Up",
+        "start_time": "7:00",
+        "end_time": "7:20"
+      },
+      {
+        "activity_name": "Cooking",
+        "start_time": "7:20",
+        "end_time": "7:50"
+      },
+      {
+        "activity_name": "Eating",
+        "start_time": "7:50",
+        "end_time": "8:20"
+      },
+      {
+        "activity_name": "Washing Dishes",
+        "start_time": "8:20",
+        "end_time": "8:35"
+      },
+      {
+        "activity_name": "Reading",
+        "start_time": "8:40",
+        "end_time": "10:10"
+      },
+      {
+        "activity_name": "Daytime Rest",
+        "start_time": "10:10",
+        "end_time": "11:00"
+      },
+      {
+        "activity_name": "Cooking",
+        "start_time": "11:00",
+        "end_time": "11:30"
+      },
+      {
+        "activity_name": "Eating",
+        "start_time": "11:30",
+        "end_time": "12:00"
+      },
+      {
+        "activity_name": "Washing Dishes",
+        "start_time": "12:00",
+        "end_time": "12:15"
+      },
+      {
+        "activity_name": "Daytime Rest",
+        "start_time": "12:15",
+        "end_time": "14:00"
+      },
+      {
+        "activity_name": "Reading",
+        "start_time": "14:00",
+        "end_time": "15:30"
+      },
+      {
+        "activity_name": "Watching TV",
+        "start_time": "15:30",
+        "end_time": "16:30"
+      },
+      {
+        "activity_name": "Daytime Rest",
+        "start_time": "16:30",
+        "end_time": "17:30"
+      },
+      {
+        "activity_name": "Cooking",
+        "start_time": "17:30",
+        "end_time": "18:00"
+      },
+      {
+        "activity_name": "Eating",
+        "start_time": "18:00",
+        "end_time": "18:30"
+      },
+      {
+        "activity_name": "Washing Dishes",
+        "start_time": "18:30",
+        "end_time": "18:45"
+      },
+      {
+        "activity_name": "Reading",
+        "start_time": "18:50",
+        "end_time": "20:20"
+      },
+      {
+        "activity_name": "Watching TV",
+        "start_time": "20:20",
+        "end_time": "21:20"
+      },
+      {
+        "activity_name": "Washing Up",
+        "start_time": "21:20",
+        "end_time": "21:40"
+      },
+      {
+        "activity_name": "Bathing",
+        "start_time": "21:40",
+        "end_time": "21:55"
+      },
+      {
+        "activity_name": "Sleeping",
+        "start_time": "22:00",
+        "end_time": "7:00"
+      }
+    ]
+  },
+  "HolidayMaker": {
+    "default": [
+      {
+        "activity_name": "Washing Up",
+        "start_time": "9:00",
+        "end_time": "9:15"
+      },
+      {
+        "activity_name": "Cooking",
+        "start_time": "9:20",
+        "end_time": "10:10"
+      },
+      {
+        "activity_name": "Eating",
+        "start_time": "10:10",
+        "end_time": "10:45"
+      },
+      {
+        "activity_name": "Washing Dishes",
+        "start_time": "10:45",
+        "end_time": "11:00"
+      },
+      {
+        "activity_name": "Watching TV",
+        "start_time": "11:05",
+        "end_time": "12:30"
+      },
+      {
+        "activity_name": "Cooking",
+        "start_time": "12:35",
+        "end_time": "13:40"
+      },
+      {
+        "activity_name": "Eating",
+        "start_time": "13:40",
+        "end_time": "14:20"
+      },
+      {
+        "activity_name": "Washing Dishes",
+        "start_time": "14:20",
+        "end_time": "14:35"
+      },
+      {
+        "activity_name": "Working",
+        "start_time": "14:40",
+        "end_time": "16:20"
+      },
+      {
+        "activity_name": "Watching TV",
+        "start_time": "16:25",
+        "end_time": "18:10"
+      },
+      {
+        "activity_name": "Cooking",
+        "start_time": "18:15",
+        "end_time": "19:30"
+      },
+      {
+        "activity_name": "Eating",
+        "start_time": "19:30",
+        "end_time": "20:10"
+      },
+      {
+        "activity_name": "Washing Dishes",
+        "start_time": "20:10",
+        "end_time": "20:25"
+      },
+      {
+        "activity_name": "Reading",
+        "start_time": "20:30",
+        "end_time": "21:20"
+      },
+      {
+        "activity_name": "Watching TV",
+        "start_time": "21:25",
+        "end_time": "22:40"
+      },
+      {
+        "activity_name": "Working",
+        "start_time": "22:45",
+        "end_time": "23:20"
+      },
+      {
+        "activity_name": "Bathing",
+        "start_time": "23:25",
+        "end_time": "23:40"
+      },
+      {
+        "activity_name": "Washing Up",
+        "start_time": "23:40",
+        "end_time": "23:50"
+      },
+      {
+        "activity_name": "Sleeping",
+        "start_time": "23:50",
+        "end_time": "9:00"
+      }
+    ]
+  },
+  "RemoteWorker": {
+    "Weekday": [
+      {
+        "activity_name": "Washing Up",
+        "start_time": "8:00",
+        "end_time": "8:15"
+      },
+      {
+        "activity_name": "Cooking",
+        "start_time": "8:15",
+        "end_time": "8:40"
+      },
+      {
+        "activity_name": "Eating",
+        "start_time": "8:40",
+        "end_time": "9:00"
+      },
+      {
+        "activity_name": "Washing Dishes",
+        "start_time": "9:00",
+        "end_time": "9:10"
+      },
+      {
+        "activity_name": "Working",
+        "start_time": "9:30",
+        "end_time": "12:00"
+      },
+      {
+        "activity_name": "Cooking",
+        "start_time": "12:00",
+        "end_time": "12:25"
+      },
+      {
+        "activity_name": "Eating",
+        "start_time": "12:25",
+        "end_time": "12:45"
+      },
+      {
+        "activity_name": "Washing Dishes",
+        "start_time": "12:45",
+        "end_time": "12:55"
+      },
+      {
+        "activity_name": "Daytime Rest",
+        "start_time": "13:00",
+        "end_time": "13:30"
+      },
+      {
+        "activity_name": "Working",
+        "start_time": "13:30",
+        "end_time": "16:30"
+      },
+      {
+        "activity_name": "Reading",
+        "start_time": "16:45",
+        "end_time": "18:15"
+      },
+      {
+        "activity_name": "Cooking",
+        "start_time": "18:15",
+        "end_time": "18:40"
+      },
+      {
+        "activity_name": "Eating",
+        "start_time": "18:40",
+        "end_time": "19:00"
+      },
+      {
+        "activity_name": "Washing Dishes",
+        "start_time": "19:00",
+        "end_time": "19:10"
+      },
+      {
+        "activity_name": "Watching TV",
+        "start_time": "19:30",
+        "end_time": "22:00"
+      },
+      {
+        "activity_name": "Bathing",
+        "start_time": "22:00",
+        "end_time": "22:30"
+      },
+      {
+        "activity_name": "Washing Up",
+        "start_time": "22:30",
+        "end_time": "22:45"
+      },
+      {
+        "activity_name": "Sleeping",
+        "start_time": "23:00",
+        "end_time": "8:00"
+      }
+    ],
+    "Weekend": [
+      {
+        "activity_name": "Washing Up",
+        "start_time": "8:00",
+        "end_time": "8:15"
+      },
+      {
+        "activity_name": "Cooking",
+        "start_time": "8:15",
+        "end_time": "8:45"
+      },
+      {
+        "activity_name": "Eating",
+        "start_time": "8:45",
+        "end_time": "9:10"
+      },
+      {
+        "activity_name": "Washing Dishes",
+        "start_time": "9:10",
+        "end_time": "9:20"
+      },
+      {
+        "activity_name": "Reading",
+        "start_time": "9:30",
+        "end_time": "11:30"
+      },
+      {
+        "activity_name": "Cooking",
+        "start_time": "11:30",
+        "end_time": "12:00"
+      },
+      {
+        "activity_name": "Eating",
+        "start_time": "12:00",
+        "end_time": "12:25"
+      },
+      {
+        "activity_name": "Washing Dishes",
+        "start_time": "12:25",
+        "end_time": "12:35"
+      },
+      {
+        "activity_name": "Daytime Rest",
+        "start_time": "12:45",
+        "end_time": "13:15"
+      },
+      {
+        "activity_name": "Watching TV",
+        "start_time": "13:30",
+        "end_time": "15:30"
+      },
+      {
+        "activity_name": "Reading",
+        "start_time": "15:40",
+        "end_time": "17:40"
+      },
+      {
+        "activity_name": "Cooking",
+        "start_time": "17:40",
+        "end_time": "18:10"
+      },
+      {
+        "activity_name": "Eating",
+        "start_time": "18:10",
+        "end_time": "18:35"
+      },
+      {
+        "activity_name": "Washing Dishes",
+        "start_time": "18:35",
+        "end_time": "18:45"
+      },
+      {
+        "activity_name": "Watching TV",
+        "start_time": "18:55",
+        "end_time": "22:00"
+      },
+      {
+        "activity_name": "Bathing",
+        "start_time": "22:00",
+        "end_time": "22:30"
+      },
+      {
+        "activity_name": "Washing Up",
+        "start_time": "22:30",
+        "end_time": "22:45"
+      },
+      {
+        "activity_name": "Sleeping",
+        "start_time": "23:00",
+        "end_time": "8:00"
+      }
+    ]
+  }
+}

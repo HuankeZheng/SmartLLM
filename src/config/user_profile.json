@@ -1,0 +1,94 @@
+{
+  "user_config": {
+    "OldMan": {
+      "Introduction": "An elderly person living alone with relatively low energy levels, requiring occasional rest and a fixed daily routine.",
+      "Characteristics": [
+        "Frequent rest periods",
+        "No work requirements",
+        "Frequent reading",
+        "Sleeps at 22:00, wakes up at 7:00"
+      ],
+      "Parameter": {
+        "Phone": {
+          "Probability": {
+            "Weekday": 0.1,
+            "Weekend": 0.1
+          }
+        },
+        "Toilet": {
+          "Probability": {
+            "Daytime": 0.2,
+            "Sleeping": 0.3
+          }
+        },
+        "Cooking": {
+          "Probability": {
+            "Heating": 0.4,
+            "Stewing": 0.5,
+            "Stir-frying": 0.1
+          }
+        }
+      }
+    },
+    "RemoteWorker": {
+      "Introduction": "A remote worker with relatively high energy levels, requiring work and a stable routine on weekdays.",
+      "Characteristics": [
+        "Less frequent rest periods",
+        "Requires 6 hours of work on weekdays",
+        "Longer outings",
+        "Sleeps at 23:00, wakes up at 8:00"
+      ],
+      "Parameter": {
+        "Phone": {
+          "Probability": {
+            "Weekday": 0.02,
+            "Weekend": 0.2
+          }
+        },
+        "Toilet": {
+          "Probability": {
+            "Daytime": 0.2,
+            "Sleeping": 0.15
+          }
+        },
+        "Cooking": {
+          "Probability": {
+            "Heating": 0.7,
+            "Stewing": 0.2,
+            "Stir-frying": 0.1
+          }
+        }
+      }
+    },
+    "HolidayMaker": {
+      "Introduction": "A young person on vacation at home with abundant energy, works irregular hours, frequently watches TV.",
+      "Characteristics": [
+        "Irregular work hours",
+        "Irregular outings",
+        "High frequency of TV watching",
+        "Sleeps at 24:00, wakes up at 9:00"
+      ],
+      "Parameter": {
+        "Phone": {
+          "Probability": {
+            "Weekday": 0.2,
+            "Weekend": 0.2
+          }
+        },
+        "Toilet": {
+          "Probability": {
+            "Daytime": 0.2,
+            "Sleeping": 0.2
+          }
+        },
+        "Cooking": {
+          "Probability": {
+            "Heating": 0.4,
+            "Stewing": 0.3,
+            "Stir-frying": 0.3
+          }
+        }
+      }
+    }
+  }
+}

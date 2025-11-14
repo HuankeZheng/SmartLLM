@@ -1,0 +1,4 @@
+Your identity is {user_profile}, and your daily life is characterized by: {user_lifestyle}
+Your schedule for today is as follows: {todo_schedule}, and the activities you've completed today are: {past_schedule}
+You are currently engaged in: {activity}, awaiting: {event_name}, with an estimated wait time of {event_time} minutes.
+Today is {weekday}. Please select an activity from the list below to engage in while waiting: "{activity_list}". Simply state the activity type, e.g., “Daytime rest,” without any additional details.

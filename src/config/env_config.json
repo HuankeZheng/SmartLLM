@@ -1,0 +1,314 @@
+{
+  "environment_config": {
+    "sensor": {
+      "Door01": {
+        "x": 9,
+        "y": 13,
+        "Mark": "BedroomDoor"
+      },
+      "Door02": {
+        "x": 12,
+        "y": 14,
+        "Mark": "ToiletDoor"
+      },
+      "Door03": {
+        "x": 10,
+        "y": 2,
+        "Mark": "KitchenDoor"
+      },
+      "Door04": {
+        "x": 19,
+        "y": 6,
+        "Mark": "StudyDoor"
+      },
+      "Door05": {
+        "x": 20,
+        "y": 12,
+        "Mark": "Gate"
+      },
+      "Motion01": {
+        "x": 2,
+        "y": 13,
+        "Mark": "Bedroom"
+      },
+      "Motion02": {
+        "x": 2,
+        "y": 16,
+        "Mark": "Bedroom"
+      },
+      "Motion03": {
+        "x": 5,
+        "y": 13,
+        "Mark": "Bedroom"
+      },
+      "Motion04": {
+        "x": 5,
+        "y": 16,
+        "Mark": "Bedroom"
+      },
+      "Motion05": {
+        "x": 3,
+        "y": 2,
+        "Mark": "LivingRoom"
+      },
+      "Motion06": {
+        "x": 3,
+        "y": 5,
+        "Mark": "LivingRoom"
+      },
+      "Motion07": {
+        "x": 3,
+        "y": 9,
+        "Mark": "LivingRoom"
+      },
+      "Motion08": {
+        "x": 6,
+        "y": 2,
+        "Mark": "LivingRoom"
+      },
+      "Motion09": {
+        "x": 6,
+        "y": 5,
+        "Mark": "LivingRoom"
+      },
+      "Motion10": {
+        "x": 6,
+        "y": 9,
+        "Mark": "LivingRoom"
+      },
+      "Motion11": {
+        "x": 9,
+        "y": 5,
+        "Mark": "LivingRoom"
+      },
+      "Motion12": {
+        "x": 9,
+        "y": 9,
+        "Mark": "LivingRoom"
+      },
+      "Motion13": {
+        "x": 13,
+        "y": 12,
+        "Mark": "Entrance"
+      },
+      "Motion14": {
+        "x": 16,
+        "y": 12,
+        "Mark": "Entrance"
+      },
+      "Motion15": {
+        "x": 13,
+        "y": 2,
+        "Mark": "Kitchen"
+      },
+      "Motion16": {
+        "x": 16,
+        "y": 2,
+        "Mark": "Kitchen"
+      },
+      "Motion17": {
+        "x": 13,
+        "y": 5,
+        "Mark": "Hallway"
+      },
+      "Motion18": {
+        "x": 16,
+        "y": 5,
+        "Mark": "Hallway"
+      },
+      "Motion19": {
+        "x": 12,
+        "y": 16,
+        "Mark": "Toilet"
+      },
+      "Motion20": {
+        "x": 13,
+        "y": 8,
+        "Mark": "Study"
+      },
+      "Motion21": {
+        "x": 16,
+        "y": 8,
+        "Mark": "Study"
+      }
+    },
+    "control_device": {
+      "ToiletBowl": {
+        "x": 9,
+        "y": 15
+      },
+      "WaterTap": {
+        "x": 13,
+        "y": 17
+      },
+      "ShowerHead": {
+        "x": 9,
+        "y": 17
+      },
+      "Television": {
+        "x": 3,
+        "y": 10
+      },
+      "DiningTable": {
+        "x": 3,
+        "y": 2
+      },
+      "Computer": {
+        "x": 14,
+        "y": 9
+      },
+      "Stove": {
+        "x": 16,
+        "y": 1
+      },
+      "Microwave": {
+        "x": 18,
+        "y": 1
+      },
+      "Fridge": {
+        "x": 14,
+        "y": 1
+      },
+      "DishWasher": {
+        "x": 18,
+        "y": 3
+      }
+    },
+    "valid_area": {
+      "Kitchen": {
+        "Scope": {
+          "area1": {
+            "xmin": 12,
+            "xhigh": 13,
+            "ymin": 1,
+            "yhigh": 3
+          },
+          "area2": {
+            "xmin": 14,
+            "xhigh": 19,
+            "ymin": 2,
+            "yhigh": 2
+          }
+        }
+      },
+      "Bedroom": {
+        "Scope": {
+          "area1": {
+            "xmin": 1,
+            "xhigh": 6,
+            "ymin": 12,
+            "yhigh": 17
+          },
+          "area2": {
+            "xmin": 7,
+            "xhigh": 8,
+            "ymin": 13,
+            "yhigh": 13
+          }
+        }
+      },
+      "LivingRoom": {
+        "Scope": {
+          "area1": {
+            "xmin": 1,
+            "xhigh": 8,
+            "ymin": 1,
+            "yhigh": 10
+          },
+          "area2": {
+            "xmin": 9,
+            "xhigh": 10,
+            "ymin": 4,
+            "yhigh": 10
+          }
+        }
+      },
+      "Toilet": {
+        "Scope": {
+          "area1": {
+            "xmin": 9,
+            "xhigh": 13,
+            "ymin": 15,
+            "yhigh": 17
+          }
+        }
+      },
+      "Study": {
+        "Scope": {
+          "area1": {
+            "xmin": 12,
+            "xhigh": 19,
+            "ymin": 7,
+            "yhigh": 8
+          }
+        }
+      },
+      "Entrance": {
+        "Scope": {
+          "area1": {
+            "xmin": 12,
+            "xhigh": 19,
+            "ymin": 11,
+            "yhigh": 13
+          }
+        }
+      },
+      "Hallway": {
+        "Scope": {
+          "area1": {
+            "xmin": 11,
+            "xhigh": 19,
+            "ymin": 5,
+            "yhigh": 5
+          },
+          "area2": {
+            "xmin": 9,
+            "xhigh": 11,
+            "ymin": 11,
+            "yhigh": 11
+          },
+          "area3": {
+            "xmin": 7,
+            "xhigh": 11,
+            "ymin": 13,
+            "yhigh": 13
+          },
+          "area4": {
+            "xmin": 9,
+            "xhigh": 11,
+            "ymin": 2,
+            "yhigh": 2
+          }
+        }
+      }
+    },
+    "Facility": {
+      "BedroomBed": {
+        "x": 2,
+        "y": 16,
+        "position": "Bedroom"
+      },
+      "Sofa": {
+        "x": 3,
+        "y": 8,
+        "position": "LivingRoom"
+      },
+      "StudyChair": {
+        "x": 14,
+        "y": 8,
+        "position": "Study"
+      },
+      "Gate": {
+        "x": 19,
+        "y": 12,
+        "position": "Entrance"
+      }
+    },
+    "Layout": {
+      "xmin": 0,
+      "xhigh": 20,
+      "ymin": 0,
+      "yhigh": 18
+    }
+  }
+}
